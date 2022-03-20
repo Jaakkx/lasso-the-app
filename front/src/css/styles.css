@@ -16,10 +16,11 @@ body{
     background-color: white;
 }
 
-/*
-** Menu settings
-*/
-
-.navbar{
-    border-bottom: solid lightgray 1px;
+.App, #root{
+    height: 100%;
 }
+
+.content{
+    height: 83%;
+}
+

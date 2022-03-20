@@ -1,0 +1,7 @@
+/*
+**Items Menu settings
+*/
+.items-menu{
+    display: flex;
+    align-items: center;
+}
