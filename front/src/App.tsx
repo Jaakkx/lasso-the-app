@@ -24,14 +24,16 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <div className="content">
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="/classement" element={<Ranked />} />
-          <Route path="/associations" element={<AllAsso />} />
-          <Route path="/social" element={<SocialPage />} />
-        </Routes>
+      <div className="background-changer">
+        <Header />
+        <div className="content">
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="/classement" element={<Ranked />} />
+            <Route path="/associations" element={<AllAsso />} />
+            <Route path="/social" element={<SocialPage />} />
+          </Routes>
+        </div>
       </div>
       <Menu />
     </div>

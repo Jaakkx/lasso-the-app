@@ -30,7 +30,7 @@ const Home = () => {
   let [lastDirection, setLastDirection] = useState();
 
   useEffect(() => {
-    document.getElementsByClassName("App")[0].id = "appHome";
+    document.getElementsByClassName("background-changer")[0].id = "appHome";
   });
 
   const onSwipe = (direction: any) => {

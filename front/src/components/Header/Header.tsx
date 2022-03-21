@@ -7,6 +7,9 @@ const Header = () => {
             <h1>
                 Lasso
             </h1>
+            <p>
+                Attrape ton asso' !
+            </p>
         </header>
     );
 }

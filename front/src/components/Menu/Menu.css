@@ -7,4 +7,6 @@
     border-top: solid lightgray 1px;
     display: flex;
     justify-content: space-around;
+    background-color: white;
+    
 }

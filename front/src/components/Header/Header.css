@@ -4,5 +4,13 @@
 
 header.header{
     height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header p {
+    font-family: "Cactus";
+    margin: 0;
 }
 
