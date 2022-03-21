@@ -1,13 +1,12 @@
 /*
 ** General settings
 */
-
 html{
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: bisque;
+    background-color: grey;
 }
 
 body{
@@ -20,7 +19,21 @@ body{
     height: 100%;
 }
 
+.App#appHome{
+    background-image: url("../assets/images/lasso-home.png");
+}
+
 .content{
     height: 83%;
 }
 
+ /* .h1{
+    text-align: left !important;
+    justify-content: start;
+} */
+ h1{
+    margin: 0;
+} 
+h2{
+    margin: 0;
+} 

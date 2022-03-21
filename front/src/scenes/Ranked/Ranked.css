@@ -1,0 +1,13 @@
+.main{
+    flex: 1;
+    height: 100%;
+    background-color: #FFE1A6;
+}
+
+.flux_ranked_card{
+    margin: 0 19px 0 19px;
+}
+.title_ranked_page{
+    margin: 0 0 24px 0;
+    color: #6D1A00;
+}

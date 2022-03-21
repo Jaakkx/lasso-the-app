@@ -1,12 +1,12 @@
-import React from "react";
-import './AllAsso.css'
+import React, { useEffect } from "react";
+import "./AllAsso.css";
 
 const AllAsso = () => {
-    return(
-        <div className="all-asso">
-            Les associations
-        </div>
-    );
-}
+  useEffect(() => {
+    document.getElementsByClassName("App")[0].id = "appAllAsso";
+  });
+
+  return <div id="all-asso">Les associations</div>;
+};
 
 export default AllAsso;
