@@ -4,12 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\Table(name="`user`")
  */
-class User
+class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -21,12 +22,12 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $username;
+    private $userName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lastname;
+    private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -34,9 +35,10 @@ class User
     private $email;
 
     /**
+     * @var string The hashed password
      * @ORM\Column(type="string", length=255)
      */
-    private $passworld;
+    private $password;
 
     /**
      * @ORM\ManyToOne(targetEntity=Association::class, inversedBy="users")
@@ -66,24 +68,24 @@ class User
 
     public function getUserName(): ?string
     {
-        return $this->username;
+        return $this->userName;
     }
 
-    public function setUserName(string $username): self
+    public function setUserName(string $userName): self
     {
-        $this->username = $username;
+        $this->userName = $userName;
 
         return $this;
     }
 
-    public function getLastname(): ?string
+    public function getLastName(): ?string
     {
-        return $this->lastname;
+        return $this->lastName;
     }
 
-    public function setLastname(string $lastname): self
+    public function setLastName(string $lastName): self
     {
-        $this->lastname = $lastname;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -100,14 +102,18 @@ class User
         return $this;
     }
 
-    public function getPassworld(): ?string
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+
+    public function getPassword(): ?string
     {
-        return $this->passworld;
+        return $this->password;
     }
 
-    public function setPassworld(string $passworld): self
+    public function setPassword(string $password): self
     {
-        $this->passworld = $passworld;
+        $this->password = $password;
 
         return $this;
     }

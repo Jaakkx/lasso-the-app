@@ -352,7 +352,10 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,NULL,NULL,NULL,NULL,'Lisa','Doyen','l_doyen@hetic.eu','test');
+INSERT INTO `user` VALUES (1,NULL,NULL,NULL,NULL,'j_beining@hetic.eu','Jael','Beining','$2y$13$sQ8zK/geFrAbKxdYkAdPD.cAupazAWtBqzWgAOMQ6GuO/ElthJZzK'),(2,NULL,NULL,NULL,NULL,'simon.durant@gmail.com','Simon','Durant','$2y$13$yuwe2s8kFNLOxrouj8FN
+J.xJOzE4MkMJmke3AaFxBT9vZ16Rx0ABu'),(4,NULL,NULL,NULL,NULL,'simon2.durant@gmail.com','Simon2','Durant2','$2y$13$LeIIqy1viQLjmm6Ss.mDmeE9BVjpKurMrDYpEafJxD5ZXchKKtDWC'),(5,NULL,NULL,NULL,NULL,'test.test@gmail.com','Test','Test','$2y$13$oC4AuaLVY
+9y2S9SEJCaC0O9126vmxJX8z0mDx0WFu8d1uaCAv8Dyq'),(6,NULL,NULL,NULL,NULL,'lisa.doyen@gmail.com','Lisa','Doyen','$2y$13$TRleKPRCaBPRF30cSFA.lu/B8/XiBpLUkmb3s28.JLrq/oStAit7u');
+
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
