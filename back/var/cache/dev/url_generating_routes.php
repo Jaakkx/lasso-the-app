@@ -5,5 +5,7 @@
 return [
     'app_lasso' => [[], ['_controller' => 'App\\Controller\\LassoController::index'], [], [['text', '/lasso']], [], [], []],
     'app_lasso_data' => [[], ['_controller' => 'App\\Controller\\LassoController::addData'], [], [['text', '/lasso/data']], [], [], []],
+    'app_registration' => [[], ['_controller' => 'App\\Controller\\RegistrationController::index'], [], [['text', '/registration']], [], [], []],
+    'register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], [], []],
 ];
