@@ -2,37 +2,31 @@
 
 namespace App\Entity;
 
-use App\Repository\QuestionUserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=QuestionUserRepository::class)
+ * QuestionUser
+ *
+ * @ORM\Table(name="question_user")
+ * @ORM\Entity(repositoryClass="App\Repository\QuestionUserRepository")
  */
 class QuestionUser
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="libelle_already_answer", type="string", length=255, nullable=false)
      */
     private $libelleAlreadyAnswer;
-
-    /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="questionsUser")
-     */
-    private $users;
-
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -51,33 +45,5 @@ class QuestionUser
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
 
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setQuestionsUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getQuestionsUser() === $this) {
-                $user->setQuestionsUser(null);
-            }
-        }
-
-        return $this;
-    }
 }

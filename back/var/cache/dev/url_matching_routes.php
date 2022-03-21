@@ -10,6 +10,10 @@ return [
     [ // $staticRoutes
         '/lasso' => [[['_route' => 'app_lasso', '_controller' => 'App\\Controller\\LassoController::index'], null, null, null, false, false, null]],
         '/lasso/data' => [[['_route' => 'app_lasso_data', '_controller' => 'App\\Controller\\LassoController::addData'], null, null, null, false, false, null]],
+        '/question' => [[['_route' => 'app_question', '_controller' => 'App\\Controller\\QuestionController::index'], null, null, null, false, false, null]],
+        '/random/question' => [[['_route' => 'app_random_question', '_controller' => 'App\\Controller\\QuestionController::getRandomQuestion'], null, null, null, false, false, null]],
+        '/update/ranking' => [[['_route' => 'app_update_ranking', '_controller' => 'App\\Controller\\QuestionController::updateRanking'], null, null, null, false, false, null]],
+        '/ranking' => [[['_route' => 'app_ranking', '_controller' => 'App\\Controller\\QuestionController::getRanking'], null, null, null, false, false, null]],
         '/registration' => [[['_route' => 'app_registration', '_controller' => 'App\\Controller\\RegistrationController::index'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'security_logout', '_controller' => 'App\\Controller\\RegistrationController::logout'], null, null, null, false, false, null]],
     ],

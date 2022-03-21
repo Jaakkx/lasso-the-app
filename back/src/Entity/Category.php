@@ -2,36 +2,47 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * Category
+ *
+ * @ORM\Table(name="category")
+ * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
 class Category
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="libelle", type="string", length=255, nullable=false)
      */
     private $libelle;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Association::class, mappedBy="categories")
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Association", mappedBy="category")
      */
-    private $associations;
+    private $association;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->associations = new ArrayCollection();
+        $this->association = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int
@@ -54,15 +65,15 @@ class Category
     /**
      * @return Collection<int, Association>
      */
-    public function getAssociations(): Collection
+    public function getAssociation(): Collection
     {
-        return $this->associations;
+        return $this->association;
     }
 
     public function addAssociation(Association $association): self
     {
-        if (!$this->associations->contains($association)) {
-            $this->associations[] = $association;
+        if (!$this->association->contains($association)) {
+            $this->association[] = $association;
             $association->addCategory($this);
         }
 
@@ -71,10 +82,11 @@ class Category
 
     public function removeAssociation(Association $association): self
     {
-        if ($this->associations->removeElement($association)) {
+        if ($this->association->removeElement($association)) {
             $association->removeCategory($this);
         }
 
         return $this;
     }
+
 }

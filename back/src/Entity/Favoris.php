@@ -2,43 +2,44 @@
 
 namespace App\Entity;
 
-use App\Repository\FavorisRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=FavorisRepository::class)
+ * Favoris
+ *
+ * @ORM\Table(name="favoris", indexes={@ORM\Index(name="IDX_8933C432F68F41F7", columns={"user_favoris_id"}), @ORM\Index(name="IDX_8933C4324122538A", columns={"associations_id"})})
+ * @ORM\Entity(repositoryClass="App\Repository\FavorisRepository")
  */
 class Favoris
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Association::class, inversedBy="favoris")
+     * @var \Association
+     *
+     * @ORM\ManyToOne(targetEntity="Association")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="associations_id", referencedColumnName="id")
+     * })
      */
     private $associations;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Favoris::class, inversedBy="favoris")
+     * @var \Favoris
+     *
+     * @ORM\ManyToOne(targetEntity="Favoris")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_favoris_id", referencedColumnName="id")
+     * })
      */
     private $userFavoris;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Favoris::class, mappedBy="userFavoris")
-     */
-    private $favoris;
-
-    public function __construct()
-    {
-        $this->favoris = new ArrayCollection();
-    }
-
 
     public function getId(): ?int
     {
@@ -69,34 +70,5 @@ class Favoris
         return $this;
     }
 
-    /**
-     * @return Collection<int, self>
-     */
-    public function getFavoris(): Collection
-    {
-        return $this->favoris;
-    }
-
-    public function addFavori(self $favori): self
-    {
-        if (!$this->favoris->contains($favori)) {
-            $this->favoris[] = $favori;
-            $favori->setUserFavoris($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFavori(self $favori): self
-    {
-        if ($this->favoris->removeElement($favori)) {
-            // set the owning side to null (unless already changed)
-            if ($favori->getUserFavoris() === $this) {
-                $favori->setUserFavoris(null);
-            }
-        }
-
-        return $this;
-    }
 
 }
