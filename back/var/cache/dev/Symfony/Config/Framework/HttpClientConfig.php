@@ -21,7 +21,7 @@ class HttpClientConfig
     private $scopedClients;
     
     /**
-     * @default false
+     * @default true
      * @param ParamConfigurator|bool $value
      * @return $this
      */
