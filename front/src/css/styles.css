@@ -24,3 +24,13 @@ body{
     height: 83%;
 }
 
+ /* .h1{
+    text-align: left !important;
+    justify-content: start;
+} */
+ h1{
+    margin: 0;
+} 
+h2{
+    margin: 0;
+} 
