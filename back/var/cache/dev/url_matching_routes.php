@@ -8,6 +8,8 @@
 return [
     false, // $matchHost
     [ // $staticRoutes
+        '/lasso' => [[['_route' => 'app_lasso', '_controller' => 'App\\Controller\\LassoController::index'], null, null, null, false, false, null]],
+        '/lasso/data' => [[['_route' => 'app_lasso_data', '_controller' => 'App\\Controller\\LassoController::addData'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
