@@ -6,7 +6,7 @@ pour récupérer le projet la première fois :
 
 les commandes à taper :
 - ``git init``
-- ``git remote add origin https://github.com/lisadoyen/fullstack.git``
+- ``git remote add origin https://github.com/Jaakkx/lasso-the-app.git``
 - ``git pull origin main``
 
 pour récupérer le projet par la suite il suffit de faire la dernière ligne de commande.
