@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import RankedCard from "../../components/RankedCard/RankedCard";
 import './Ranked.css';
 
 
 const Ranked = () => {
+    useEffect(() => {
+        document.getElementsByClassName("App")[0].id = "appRanked";
+      });
+    
     return(
         <div className="main">
             <div className="flux_ranked_card">
