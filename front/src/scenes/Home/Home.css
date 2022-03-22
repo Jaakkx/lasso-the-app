@@ -1,5 +1,36 @@
 /*
 **Home settings
 */
-.home{
+
+#home {
+    margin-top     : 15%;
+    display        : flex;
+    height         : 425px;
+    justify-content: center;
+    align-items    : center;
+}
+
+.tinder-card {
+    display        : flex;
+    justify-content: center;
+}
+
+.card-design {
+    width           : 379px;
+    height          : 306px;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    background-color: #FEEED0;
+    border-radius   : 30px;
+}
+
+.card-container {
+    width           : 358px;
+    height          : 364px;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    background-color: #FFF8EB;
+    border-radius   : 30px;
 }

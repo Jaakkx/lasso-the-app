@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import TinderCard from "react-tinder-card";
+import CardSwipe from "../../components/CardSwipe.tsx/CardSwipe";
 
 const db = [
   {
@@ -43,14 +44,19 @@ const Home = () => {
 
   return (
     <div id="home">
-      <TinderCard
-        onSwipe={onSwipe}
-        onCardLeftScreen={() => onCardLeftScreen("fooBar")}
-        preventSwipe={["right", "left"]}
-        flickOnSwipe={false}
-      >
-        Swipe l'associations
-      </TinderCard>
+      <div className="card-design">
+        <div className="card-container">
+          <TinderCard
+            onSwipe={onSwipe}
+            onCardLeftScreen={() => onCardLeftScreen("fooBar")}
+            preventSwipe={["right", "left"]}
+            flickOnSwipe={false}
+            className="tinder-card"
+          >
+            <CardSwipe />
+          </TinderCard>
+        </div>
+      </div>
     </div>
   );
 };
