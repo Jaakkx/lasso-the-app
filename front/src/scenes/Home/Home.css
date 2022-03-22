@@ -3,7 +3,7 @@
 */
 
 #home {
-    margin-top     : 15%;
+    padding-top    : 15%;
     display        : flex;
     height         : 425px;
     justify-content: center;
@@ -13,11 +13,12 @@
 .tinder-card {
     display        : flex;
     justify-content: center;
+    position: absolute;
 }
 
 .card-design {
-    width           : 379px;
-    height          : 306px;
+    width           : 348px;
+    height          : 280.6px;
     display         : flex;
     align-items     : center;
     justify-content : center;
@@ -26,11 +27,19 @@
 }
 
 .card-container {
-    width           : 358px;
-    height          : 364px;
+    width           : 328.5px;
+    height          : 334px;
     display         : flex;
     justify-content : center;
     align-items     : center;
     background-color: #FFF8EB;
     border-radius   : 30px;
+}
+
+.tinder-card-duplicate{
+    height          : 390px;
+    width           : 303px;
+    border-radius   : 30px;
+    background-color: white;
+    position: relative;
 }

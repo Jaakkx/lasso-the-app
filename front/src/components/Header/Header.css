@@ -18,6 +18,11 @@ header.header {
 }
 
 .header p {
-    font-family: "Cactus";
+    font-family: "GothamBold";
     margin     : 0;
+}
+
+.header h1{
+    font-size: 2.3em;
+    font-family: "Cactus";
 }

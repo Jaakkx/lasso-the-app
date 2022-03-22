@@ -2,10 +2,21 @@
 ** General settings
 */
 
-@font-face{
+@font-face {
     font-family: "Cactus";
-    src:url("../assets/font/Cactus\ Regular.otf");
+    src        : url(../assets/font/Cactus\ Regular.otf);
 }
+
+@font-face {
+    font-family: "GothamBold";
+    src        : url(../assets/font/GothamBold.otf);
+}
+
+@font-face {
+    font-family: "GothamBook";
+    src        : url(../assets/font/GothamBook.otf);
+}
+
 html {
     height          : 100vh;
     display         : flex;
@@ -25,29 +36,38 @@ body {
     height: 100%;
 }
 
-.background-changer{
+.background-changer {
     height: 93%;
 }
 
-.background-changer#appHome {
-    background-image : url("../assets/images/lasso-home.png");
-    background-size  : cover;
-    background-repeat: no-repeat;
+.background-changer#appHome,
+.background-changer#appRank,
+.background-changer#appAllAsso,
+.background-changer#appSocial {
+    background-size    : cover;
+    background-repeat  : no-repeat;
     background-position: bottom;
+}
+
+.background-changer#appHome{
+    background-image   : url("../assets/images/lasso-home.png");
+}
+
+.background-changer#appRank, .background-changer#appAllAsso{
+    background-image   : url("../assets/images/lasso-asso.png");
+}
+
+.background-changer#appSocial{
+    background-image   : url("../assets/images/lasso-home.png");
 }
 
 .content {
     height: 90%;
 }
 
-/* .h1{
-    text-align: left !important;
-    justify-content: start;
-} */
 h1 {
-    margin: 0;
-    font-family: "Cactus";
-    color: #6D1A00;
+    margin     : 0;
+    color      : #6D1A00;
 }
 
 h2 {

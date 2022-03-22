@@ -27,11 +27,22 @@ const db = [
 ];
 
 const Home = () => {
-  let [currentIndex, setCurrentIndex] = useState(db.length - 1);
-  let [lastDirection, setLastDirection] = useState();
+  const questions = db;
+  const [lastDirection, setLastDirection] = useState();
+
+  const swiped = (direction: any, nameToDelete: any) => {
+    console.log("removing: " + nameToDelete);
+    setLastDirection(direction);
+  };
+
+  const outOfFrame = (name: string) => {
+    console.log(name + " left the screen!");
+  };
 
   useEffect(() => {
     document.getElementsByClassName("background-changer")[0].id = "appHome";
+    document.getElementsByClassName("active")[0].classList.remove("active");
+    document.getElementById("item-home")?.classList.add("active");
   });
 
   const onSwipe = (direction: any) => {
@@ -46,15 +57,18 @@ const Home = () => {
     <div id="home">
       <div className="card-design">
         <div className="card-container">
-          <TinderCard
-            onSwipe={onSwipe}
-            onCardLeftScreen={() => onCardLeftScreen("fooBar")}
-            preventSwipe={["right", "left"]}
-            flickOnSwipe={false}
-            className="tinder-card"
-          >
-            <CardSwipe />
-          </TinderCard>
+          <div className="tinder-card-duplicate">
+            {questions.map((question) => (
+                <TinderCard
+                className="tinder-card"
+                key={question.name}
+                onSwipe={(dir) => swiped(dir, question.name)}
+                onCardLeftScreen={() => outOfFrame(question.name)}
+                >
+                <CardSwipe questionContent={question.name} />
+              </TinderCard>
+            ))}
+          </div>
         </div>
       </div>
     </div>
