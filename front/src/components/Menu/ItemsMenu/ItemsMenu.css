@@ -13,3 +13,7 @@
 .path-menu{
     fill: #fff;
 }
+
+.items-menu .active{
+    fill: #6D1A00;
+}

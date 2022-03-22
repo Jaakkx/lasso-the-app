@@ -3,6 +3,9 @@
 */
 
 .card-swipe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height          : 390px;
     width           : 303px;
     border-radius   : 30px;

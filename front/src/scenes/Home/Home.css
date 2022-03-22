@@ -13,6 +13,7 @@
 .tinder-card {
     display        : flex;
     justify-content: center;
+    position: absolute;
 }
 
 .card-design {
@@ -40,4 +41,5 @@
     width           : 303px;
     border-radius   : 30px;
     background-color: white;
+    position: relative;
 }

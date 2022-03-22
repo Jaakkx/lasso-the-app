@@ -5,6 +5,8 @@ import AssoCard from "../../components/AssoCard/AssoCard";
 const AllAsso = () => {
   useEffect(() => {
     document.getElementsByClassName("App")[0].id = "appAllAsso";
+    document.getElementsByClassName('active')[0]?.classList.remove('active');
+    document.getElementById("item-associations")?.classList.add("active");
   });
 
   return(
