@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "GothamBold";
+    src: url(../../assets/font/GothamBold.otf);
+}
+
 .main{
     flex: 1;
     height: 100%;
@@ -10,4 +15,10 @@
 .title_ranked_page{
     margin: 0 0 24px 0;
     color: #6D1A00;
+    font-family: 'GothamBold';
+    font-size: 24px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }

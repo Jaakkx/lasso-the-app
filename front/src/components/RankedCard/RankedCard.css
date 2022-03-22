@@ -18,22 +18,13 @@
 
 .rank{
     display: flex;
-    border-radius: 50%;
-    background-color: #6D1A00;
     width: 32px;
     height: 32px;
-    color: white;
+    color: #6D1A00;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 3rem;
     margin: 0 8px 0 0;
 
 }
 
-.title_card{
-    margin:0;
-}
-
-.content_card{
-    margin: 8px 0 0 0;
-}
