@@ -73,6 +73,7 @@ back/!app/logs/.gitkeep
 back/app/spool/*
 
 # Cache, session files and logs (Symfony3)
+back/var/
 back/var/cache/*
 back/var/log/*
 back/var/sessions/*
