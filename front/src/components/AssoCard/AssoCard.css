@@ -1,0 +1,54 @@
+/*
+**Header Settings
+*/
+
+ @font-face {
+     font-family: "GothamBold";
+     src: url(../../assets/font/GothamBold.otf);
+ }
+ @font-face {
+    font-family: "GothamBook";
+    src: url(../../assets/font/GothamBook.otf);
+}
+
+
+ 
+
+.container{
+    height: 160px;
+    margin: 0 0 16px 0;
+    padding: 16px;
+    background-color: white;
+    border-radius: 16px;
+    
+}
+.title_ranked_card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "GothamBold";
+    font-size: 22px;
+}
+
+
+.title_card{
+    margin:0;
+    margin-right: auto;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    max-width: 245px;
+}
+
+
+.content_card{
+    margin: 8px 0 0 0;
+    line-height: 120%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    font-family: "GothamBook";
+    font-size: 17px;
+}
