@@ -5,7 +5,11 @@
 return [
     'app_lasso' => [[], ['_controller' => 'App\\Controller\\LassoController::index'], [], [['text', '/lasso']], [], [], []],
     'app_lasso_data' => [[], ['_controller' => 'App\\Controller\\LassoController::addData'], [], [['text', '/lasso/data']], [], [], []],
+    'app_question' => [[], ['_controller' => 'App\\Controller\\QuestionController::index'], [], [['text', '/question']], [], [], []],
+    'app_random_question' => [[], ['_controller' => 'App\\Controller\\QuestionController::getRanking'], [], [['text', '/ranking']], [], [], []],
     'app_registration' => [[], ['_controller' => 'App\\Controller\\RegistrationController::index'], [], [['text', '/registration']], [], [], []],
-    'register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],
+    'register' => [['token'], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['variable', '/', '[^/]++', 'token', true], ['text', '/register']], [], [], []],
+    'login' => [['token'], ['_controller' => 'App\\Controller\\RegistrationController::login'], [], [['variable', '/', '[^/]++', 'token', true], ['text', '/login']], [], [], []],
+    'security_logout' => [[], ['_controller' => 'App\\Controller\\RegistrationController::logout'], [], [['text', '/logout']], [], [], []],
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], [], []],
 ];

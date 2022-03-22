@@ -2,68 +2,111 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * User
+ *
+ * @ORM\Table(name="user", indexes={@ORM\Index(name="IDX_8D93D649BCB134CE", columns={"questions_id"}), @ORM\Index(name="IDX_8D93D649D4EBF353", columns={"questions_user_id"}),  @ORM\Index(name="IDX_8D93D6494122538A", columns={"associations_id"})})
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $userName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
 
     /**
-     * @var string The hashed password
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="user_name", type="string", length=255, nullable=false)
+     */
+    private $userName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=false)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
     private $password;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Association::class, inversedBy="users")
+     * @var \Association
+     *
+     * @ORM\ManyToOne(targetEntity="Association")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="associations_id", referencedColumnName="id")
+     * })
      */
     private $associations;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="users")
+     * @var \Question
+     *
+     * @ORM\ManyToOne(targetEntity="Question")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="questions_id", referencedColumnName="id")
+     * })
      */
     private $questions;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity=QuestionUser::class, inversedBy="users")
+     * @var \QuestionUser
+     *
+     * @ORM\ManyToOne(targetEntity="QuestionUser")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="questions_user_id", referencedColumnName="id")
+     * })
      */
     private $questionsUser;
 
     /**
-     * @ORM\OneToOne(targetEntity=Ranking::class, inversedBy="userRanking", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity=AssociationUser::class, mappedBy="users")
      */
-    private $ranking;
+    private $associationUsers;
 
+    public function __construct()
+    {
+        $this->associationUsers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
     }
 
     public function getUserName(): ?string
@@ -89,22 +132,6 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
 
         return $this;
     }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
 
     public function getPassword(): ?string
     {
@@ -154,16 +181,32 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
         return $this;
     }
 
-    public function getRanking(): ?Ranking
+    /**
+     * @return Collection<int, AssociationUser>
+     */
+    public function getAssociationUsers(): Collection
     {
-        return $this->ranking;
+        return $this->associationUsers;
     }
 
-    public function setRanking(?Ranking $ranking): self
+    public function addAssociationUser(AssociationUser $associationUser): self
     {
-        $this->ranking = $ranking;
+        if (!$this->associationUsers->contains($associationUser)) {
+            $this->associationUsers[] = $associationUser;
+            $associationUser->addUser($this);
+        }
 
         return $this;
     }
+
+    public function removeAssociationUser(AssociationUser $associationUser): self
+    {
+        if ($this->associationUsers->removeElement($associationUser)) {
+            $associationUser->removeUser($this);
+        }
+
+        return $this;
+    }
+
 
 }

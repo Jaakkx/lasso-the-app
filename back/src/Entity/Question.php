@@ -2,47 +2,45 @@
 
 namespace App\Entity;
 
-use App\Repository\QuestionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=QuestionRepository::class)
+ * Question
+ *
+ * @ORM\Table(name="question")
+ * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
  */
 class Question
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="libelle", type="string", length=255, nullable=false)
      */
     private $libelle;
 
     /**
-     * @ORM\Column(type="boolean") // 0 : categorie et 1 : association
+     * @var bool
+     *
+     * @ORM\Column(name="type", type="boolean", nullable=false)
      */
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="questions")
-     */
-    private $users;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="detail_type", type="string", length=255, nullable=false)
      */
     private $detailType;
-
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -73,36 +71,6 @@ class Question
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setQuestions($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getQuestions() === $this) {
-                $user->setQuestions(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getDetailType(): ?string
     {
         return $this->detailType;
@@ -114,4 +82,6 @@ class Question
 
         return $this;
     }
+
+
 }

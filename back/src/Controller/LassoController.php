@@ -38,6 +38,8 @@ class LassoController extends AbstractController
 
     /**
      * @Route("/lasso/data", name="app_lasso_data")
+     * @param CategoryRepository $categoryRepository
+     * @return Response
      */
 
     public function addData(CategoryRepository $categoryRepository): Response

@@ -2,94 +2,111 @@
 
 namespace App\Entity;
 
-use App\Repository\AssociationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AssociationRepository::class)
+ * Association
+ *
+ * @ORM\Table(name="association")
+ * @ORM\Entity(repositoryClass="App\Repository\AssociationRepository")
  */
 class Association
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=5000)
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=5000, nullable=false)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="npa_code", type="string", length=255, nullable=true)
      */
     private $npaCode;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255, nullable=false)
      */
     private $picture;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="adress", type="string", length=255, nullable=true)
      */
     private $adress;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="phone_number", type="string", length=255, nullable=true)
      */
     private $phoneNumber;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="creation_date", type="datetime", nullable=false)
      */
     private $creationDate;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="website", type="string", length=255, nullable=false)
      */
     private $website;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="score", type="integer", nullable=false)
      */
     private $score;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="associations")
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="association")
+     * @ORM\JoinTable(name="association_category",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="association_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     *   }
+     * )
      */
-    private $users;
+    private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Ranking::class, mappedBy="associations")
+     * Constructor
      */
-    private $rankings;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="associations")
-     */
-    private $categories;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Favoris::class, mappedBy="associations")
-     */
-    private $favoris;
-
     public function __construct()
     {
-        $this->users = new ArrayCollection();
-        $this->rankings = new ArrayCollection();
-        $this->categories = new ArrayCollection();
-        $this->favoris = new ArrayCollection();
+        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,7 +143,7 @@ class Association
         return $this->npaCode;
     }
 
-    public function setNpaCode(string $npaCode): self
+    public function setNpaCode(?string $npaCode): self
     {
         $this->npaCode = $npaCode;
 
@@ -206,74 +223,17 @@ class Association
     }
 
     /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setAssociations($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getAssociations() === $this) {
-                $user->setAssociations(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Ranking>
-     */
-    public function getRankings(): Collection
-    {
-        return $this->rankings;
-    }
-
-    public function addRanking(Ranking $ranking): self
-    {
-        if (!$this->rankings->contains($ranking)) {
-            $this->rankings[] = $ranking;
-            $ranking->addAssociation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRanking(Ranking $ranking): self
-    {
-        if ($this->rankings->removeElement($ranking)) {
-            $ranking->removeAssociation($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Category>
      */
-    public function getCategories(): Collection
+    public function getCategory(): Collection
     {
-        return $this->categories;
+        return $this->category;
     }
 
     public function addCategory(Category $category): self
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
         }
 
         return $this;
@@ -281,38 +241,9 @@ class Association
 
     public function removeCategory(Category $category): self
     {
-        $this->categories->removeElement($category);
+        $this->category->removeElement($category);
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Favoris>
-     */
-    public function getFavoris(): Collection
-    {
-        return $this->favoris;
-    }
-
-    public function addFavori(Favoris $favori): self
-    {
-        if (!$this->favoris->contains($favori)) {
-            $this->favoris[] = $favori;
-            $favori->setAssociations($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFavori(Favoris $favori): self
-    {
-        if ($this->favoris->removeElement($favori)) {
-            // set the owning side to null (unless already changed)
-            if ($favori->getAssociations() === $this) {
-                $favori->setAssociations(null);
-            }
-        }
-
-        return $this;
-    }
 }
