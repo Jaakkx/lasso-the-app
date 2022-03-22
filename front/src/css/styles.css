@@ -4,8 +4,18 @@
 
 @font-face{
     font-family: "Cactus";
-    src:url("../assets/font/Cactus\ Regular.otf");
+    src:url(../assets/font/Cactus\ Regular.otf);
 }
+
+@font-face {
+    font-family: "GothamBold";
+    src: url(../assets/font/GothamBold.otf);
+}
+@font-face {
+   font-family: "GothamBook";
+   src: url(../assets/font/GothamBook.otf);
+}
+
 html {
     height          : 100vh;
     display         : flex;

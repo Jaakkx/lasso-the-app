@@ -46,15 +46,17 @@ const Home = () => {
     <div id="home">
       <div className="card-design">
         <div className="card-container">
-          <TinderCard
-            onSwipe={onSwipe}
-            onCardLeftScreen={() => onCardLeftScreen("fooBar")}
-            preventSwipe={["right", "left"]}
-            flickOnSwipe={false}
-            className="tinder-card"
-          >
-            <CardSwipe />
-          </TinderCard>
+          <div className="tinder-card-duplicate">
+            <TinderCard
+              onSwipe={onSwipe}
+              onCardLeftScreen={() => onCardLeftScreen("fooBar")}
+              preventSwipe={["right", "left"]}
+              flickOnSwipe={false}
+              className="tinder-card"
+            >
+              <CardSwipe />
+            </TinderCard>
+          </div>
         </div>
       </div>
     </div>
