@@ -35,6 +35,11 @@ class AssociationUser
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $associationName;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -77,6 +82,18 @@ class AssociationUser
     public function removeUser(User $user): self
     {
         $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    public function getAssociationName(): ?string
+    {
+        return $this->associationName;
+    }
+
+    public function setAssociationName(string $associationName): self
+    {
+        $this->associationName = $associationName;
 
         return $this;
     }

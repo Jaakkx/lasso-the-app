@@ -30,6 +30,7 @@ const db = [
 const Home = () => {
   const questions = db;
   const [lastDirection, setLastDirection] = useState();
+  const [allQuestions, setAllQuestions] = useState();
 
   const swiped = (direction: any, nameToDelete: any) => {
     console.log("removing: " + nameToDelete);
@@ -44,16 +45,13 @@ const Home = () => {
     document.getElementsByClassName("background-changer")[0].id = "appHome";
     document.getElementsByClassName("active")[0].classList.remove("active");
     document.getElementById("item-home")?.classList.add("active");
+    console.log( handleClick());
+    // handleClick();
   });
 
-  const handleClick = async() => {
-    try{
-      const register = await getQuestion();
-      console.log(getQuestion());
-      
-    }catch(error){
-        alert(error);
-    }
+  const handleClick = () => {
+      const register =  getQuestion();      
+      return register;
   }
 
   const onSwipe = (direction: any) => {
@@ -66,11 +64,11 @@ const Home = () => {
 
   return (
     <div id="home">
-      <div
+      {/* <div
         onClick={handleClick}
       >
         Test
-      </div>
+      </div> */}
       <div className="card-design">
         <div className="card-container">
           <div className="tinder-card-duplicate">

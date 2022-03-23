@@ -31,13 +31,15 @@ export const registeringUser = async (registerUser:registerUser): Promise<regist
     }
 };
 
-export const getQuestion =async () => {
+export const getQuestion =async ():Promise<Question> => {
 
     try{
         const res = await axios.get(
             `${process.env.REACT_APP_BASE_URL}/question`
         )
         return res.data;
+        console.log(res.data);
+        
     } catch(error) {
         throw new Error("Problème récupération question");
     }
