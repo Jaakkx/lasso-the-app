@@ -46,12 +46,12 @@ class RegistrationController extends AbstractController
         $params = json_decode($request->getContent(), true);
         //dd($params);
 
-        $results = $serializer->serialize(
+        /*$results = $serializer->serialize(
             $params,
             'json'
-        );
+        );*/
 
-        return new JsonResponse($results, 200, [], true);
+        //return new JsonResponse($results, 200, [], true);
 
         if(!isset($params['lastName']) || empty($params['lastName'])){
             throw new HttpException(400, 'missing parameter');

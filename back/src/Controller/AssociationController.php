@@ -21,33 +21,42 @@ class AssociationController extends AbstractController
     /**
      * @Route("/association", name="app_association")
      * @param AssociationRepository $associationRepository
-     * @param CategoryRepository $categoryRepository
      * @param SerializerInterface $serializer
      * @return JsonResponse
      */
-    public function getAssociation(AssociationRepository $associationRepository,CategoryRepository $categoryRepository,SerializerInterface $serializer): JsonResponse
+    public function getAssociations(AssociationRepository $associationRepository,SerializerInterface $serializer): JsonResponse
     {
 
         // affiche toutes les associations
-        //$associations = $entityManager->getRepository(Association::class)->findAll();
-        $category = $categoryRepository->findOneById(1);
-        //$association = $associations->getCategory();
 
-        //dd($associations);
-        //dd($associations);
+        $assos = $associationRepository->findAll();
+
+        $tab_final = [];
+        foreach ($assos as $asso){
+            $tab = [];
+            $tab['id'] = $asso->getid();
+            $tab['name'] = $asso->getName();
+            $tab['description'] = $asso->getDescription();
+            $tab['npaCode'] = $asso->getNpaCode();
+            $tab['picture'] = $asso->getPicture();
+            $tab['adress'] = $asso->getAdress();
+            $tab['phoneNumber'] = $asso->getPhoneNumber();
+            $tab['website'] = $asso->getWebsite();
+            $tab['creationDate'] = $asso->getCreationDate();
+            $tab['categories'] = [];
+            foreach($asso->getCategory() as $category){
+                array_push($tab['categories'], $category->getLibelle());
+            }
+            array_push($tab_final, $tab);
+        }
+
         $results = $serializer->serialize(
-            $category,
-            'json',
-            array('groups' => array('association_group'))
+            $tab_final,
+            'json'
         );
 
         return new JsonResponse($results, 200, [], true);
 
-
-        return $this->json([
-            'message' => 'A resoudre',
-            'path' => 'src/Controller/RegistrationController.php',
-        ]);
     }
 
     /**
@@ -61,19 +70,33 @@ class AssociationController extends AbstractController
     {
 
         // affiche toutes les associations
-        $associations = $associationRepository->findById($id);
-        //dd($associations);
-        /*$results = $serializer->serialize(
-            $associations,
+        $assos = $associationRepository->findOneById($id);
+
+        $tab = [];
+        foreach($assos->getCategory() as $asso){
+            $asso->getLibelle();
+            array_push($tab, $asso->getLibelle());
+        }
+
+        $returnArray = [
+            'id' =>$assos->getId(),
+            'name'=>$assos->getName(),
+            'description'=>$assos->getDescription(),
+            'npa'=>$assos->getNpaCode(),
+            'picture'=>$assos->getPicture(),
+            'adress'=>$assos->getAdress(),
+            'phoneNumber'=>$assos->getPhoneNumber(),
+            'webSite'=>$assos->getWebsite(),
+            'creationDate'=>$assos->getCreationDate(),
+            'categorie'=>$tab
+        ];
+
+        $results = $serializer->serialize(
+            $returnArray,
             'json'
-        );*/
+        );
 
+        return new JsonResponse($results, 200, [], true);
 
-        //return new JsonResponse($results, 200, [], true);
-
-        return $this->json([
-            'message' => 'A resoudre',
-            'path' => 'src/Controller/RegistrationController.php',
-        ]);
     }
 }
