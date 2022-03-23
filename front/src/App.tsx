@@ -10,6 +10,7 @@ import Header from "./components/Header/Header";
 import AllAsso from "./scenes/AllAsso/AllAsso";
 import SocialPage from "./scenes/SocialPage/SocialPage";
 import Signin from "./scenes/Signin/Signin";
+import SingleAsso from "./scenes/SingleAsso/SingleAsso";
 
 function App() {
   const [token, setToken] = useState();
@@ -18,7 +19,7 @@ function App() {
     return (
       <div className="App">
         <Routes>
-          <Route index element={<Login setToken={setToken}/>}/>
+          <Route path="/" element={<Login setToken={setToken}/>}/>
           <Route path='/inscription' element={<Signin/>}/>
         </Routes>
       </div>
@@ -31,10 +32,11 @@ function App() {
         <Header />
         <div className="content">
           <Routes>
-            <Route index element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/classement" element={<Ranked />} />
             <Route path="/associations" element={<AllAsso />} />
             <Route path="/social" element={<SocialPage />} />
+            <Route path="/ton_asso" element={<SingleAsso />} />
           </Routes>
         </div>
       </div>
