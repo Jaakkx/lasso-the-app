@@ -13,13 +13,22 @@ class QuestionController extends AbstractController
 {
     /**
      * @Route("/question", name="app_question")
+     * @param QuestionRepository $questionRepository
+     * @param SerializerInterface $serializer
+     * @return Response
      */
-    public function index(): Response
+    public function getQuestion(QuestionRepository $questionRepository, SerializerInterface $serializer): Response
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/QuestionController.php',
-        ]);
+
+        // affiche toutes les questions
+        $questions = $questionRepository->findAll();
+
+        $results = $serializer->serialize(
+            $questions,
+            'json'
+        );
+
+        return new JsonResponse($results, 200, [], true);
     }
 
     /**
@@ -44,14 +53,17 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/update/ranking", name="app_update_ranking")
+     * @Route("/update/ranking/{$questionId}", name="app_update_ranking")
      * @param SerializerInterface $serializer
+     * @param $questionId
+     * @param QuestionRepository $questionRepository
      * @return JsonResponse
      */
-    public function updateRanking(SerializerInterface $serializer){
+    public function updateRanking(SerializerInterface $serializer, $questionId, QuestionRepository $questionRepository){
 
 
         // recupérer la question affichée (en params ?)
+        //$questionSelected = $questionRepository->findOneById();
 
         // si appuie sur btn gauche
         // question reste à 0 => toutes les assos impliquées reste à leur valeur actuelle (vérifier quelle assos impliquées avec type et detail type dans table Question)
