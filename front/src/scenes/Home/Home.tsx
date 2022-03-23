@@ -44,13 +44,14 @@ const Home = () => {
     document.getElementsByClassName("background-changer")[0].id = "appHome";
     document.getElementsByClassName("active")[0].classList.remove("active");
     document.getElementById("item-home")?.classList.add("active");
+    console.log(handleClick());
+    
+    // handleClick();
   });
 
   const handleClick = async() => {
     try{
-      const register = await getQuestion();
-      console.log(getQuestion());
-      
+      const register = await getQuestion();      
     }catch(error){
         alert(error);
     }
@@ -66,11 +67,11 @@ const Home = () => {
 
   return (
     <div id="home">
-      <div
+      {/* <div
         onClick={handleClick}
       >
         Test
-      </div>
+      </div> */}
       <div className="card-design">
         <div className="card-container">
           <div className="tinder-card-duplicate">
