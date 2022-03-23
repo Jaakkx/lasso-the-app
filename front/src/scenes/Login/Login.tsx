@@ -18,7 +18,7 @@ const Login = (props:any) => {
           <input type={"password"} placeholder={"Entrez votre Mot de passe ici"} />
         </label>
         <p className="mdp-oublier">mot de passe oublié?</p>
-        <button type="submit" onClick={()=>{
+        <button className="Login" type="submit" onClick={()=>{
           props.setToken(fakeAuthProvider);
         }}>
           Se connecter

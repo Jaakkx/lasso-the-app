@@ -46,6 +46,10 @@ button{
     color: white;
     background-color: #6D1A00;
     font-family: "GothamBook";
+
+}
+.Login{
+    margin-top: 20px;
 }
 .second-button{
     background: none;
