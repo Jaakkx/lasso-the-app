@@ -20,3 +20,4 @@ WORKDIR /lasso-the-app
 RUN docker-php-ext-install pdo pdo_mysql calendar bcmath
 
 COPY --from=builder /lasso-the-app /lasso-the-app
+

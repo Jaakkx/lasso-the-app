@@ -6,6 +6,7 @@ use App\Entity\Association;
 use App\Entity\Category;
 use App\Entity\Question;
 use App\Entity\User;
+use App\Repository\AssociationRepository;
 use App\Repository\CategoryRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,7 +43,7 @@ class LassoController extends AbstractController
      * @return Response
      */
 
-    public function addData(CategoryRepository $categoryRepository): Response
+    public function addData(CategoryRepository $categoryRepository, AssociationRepository $associationRepository): Response
     {
         /**
          * exemple ajout question
@@ -101,21 +102,23 @@ class LassoController extends AbstractController
             ->setPhoneNumber('08 00 47 47 88')
             ->setPicture('https://www.petitsfreresdespauvres.fr/src/images/logo-red-retina.png')
             ->setCreationDate(new DateTime('1946-04-19 00:00:00'))
-            ->setScore(100);
+            ->setScore(100);*/
 
-        $categorie4 = $categoryRepository ->findOneByLibelle('Humanitaire');
-        $categorie2 = $categoryRepository ->findOneByLibelle('Seniors');
-        $categorie3 = $categoryRepository ->findOneByLibelle('Sante');
-        //$categorie1 = $categoryRepository ->findOneByLibelle('Seniors');
+        /*$assoc = $associationRepository->findOneById(21);
+
+        $categorie4 = $categoryRepository ->findOneById(3);
+        $categorie2 = $categoryRepository ->findOneById(4);
+        $categorie3 = $categoryRepository ->findOneById(9);
+        //$categorie1 = $categoryRepository ->findOneById(9);
 
 
         $assoc ->addCategory($categorie4);
         $assoc ->addCategory($categorie2);
         $assoc ->addCategory($categorie3);
         //$assoc ->addCategory($categorie1);
-        $this->entityManager->persist($assoc);
-        $this->entityManager->flush();*/
-
+        //$this->entityManager->persist($assoc);
+        $this->entityManager->flush();
+        dd($assoc);*/
         //dd($question);
 
         // DATA, code_statut HTTP, tableau de contexte , json : true
