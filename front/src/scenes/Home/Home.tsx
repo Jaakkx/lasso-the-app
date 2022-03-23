@@ -30,6 +30,7 @@ const db = [
 const Home = () => {
   const questions = db;
   const [lastDirection, setLastDirection] = useState();
+  const [allQuestions, setAllQuestions] = useState();
 
   const swiped = (direction: any, nameToDelete: any) => {
     console.log("removing: " + nameToDelete);
@@ -44,17 +45,18 @@ const Home = () => {
     document.getElementsByClassName("background-changer")[0].id = "appHome";
     document.getElementsByClassName("active")[0].classList.remove("active");
     document.getElementById("item-home")?.classList.add("active");
-  handleClick();
-    
+    console.log( handleClick());
     // handleClick();
   });
 
   const handleClick = async() => {
     try{
       const register = await getQuestion();      
+      return register;
     }catch(error){
         alert(error);
     }
+
   }
 
   const onSwipe = (direction: any) => {
