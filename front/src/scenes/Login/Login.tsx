@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { fakeAuthProvider } from "../../components/auth";
+import TitreLogin from "../../components/TitreLogin.tsx/TitreLogin";
 import "./Login.css";
-import Titre_login from "./Titre_login"
 
 const Login = (props:any) => {
   return (
     <div>
-      <Titre_login/>
+      <TitreLogin/>
       <form className="form">
         <label>
           <p>Adresse mail</p>
@@ -23,11 +24,7 @@ const Login = (props:any) => {
           Se connecter
         </button>
         <p className="center">Ou</p>
-        <button className="second-button" type="submit" onClick={()=>{
-          props.setToken(fakeAuthProvider);
-        }}>
-          Inscrivez-vous
-        </button>
+        <Link to={"/inscription"} className="second-button">Inscrivez-vous</Link>
         {/* <p className="mdp-oublier">Vous n'avez pas de compte?</p> */}
       </form>
     </div>
