@@ -1,0 +1,16 @@
+/*titre login haut de page*/
+.titre-login{
+    text-align: center;
+    margin-top: 51px;
+}
+h5{
+    margin-bottom: 0px;
+    font-size: 32px;
+    color: #6D1A00;
+    font-family: "Cactus"
+}
+.slogan{
+    font-size: 16px;
+    margin-top: 0px;
+    font-family: "GothamBold";
+}

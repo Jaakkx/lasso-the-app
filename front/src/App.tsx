@@ -9,6 +9,7 @@ import Menu from "./components/Menu/Menu";
 import Header from "./components/Header/Header";
 import AllAsso from "./scenes/AllAsso/AllAsso";
 import SocialPage from "./scenes/SocialPage/SocialPage";
+import Signin from "./scenes/Signin/Signin";
 
 function App() {
   const [token, setToken] = useState();
@@ -16,7 +17,10 @@ function App() {
   if (!token) {
     return (
       <div className="App">
-        <Login setToken={setToken} />
+        <Routes>
+          <Route index element={<Login setToken={setToken}/>}/>
+          <Route path='/inscription' element={<Signin/>}/>
+        </Routes>
       </div>
     );
   }

@@ -1,8 +1,8 @@
 import React from "react";
 import { fakeAuthProvider } from "../../components/auth";
-import "./Login.css";
+import "./TitreLogin.css";
 
-const Titre_login = (props:any) => {
+const TitreLogin = (props:any) => {
   return (
     <div className="titre-login"> 
       <h5>Lasso</h5>
@@ -11,4 +11,4 @@ const Titre_login = (props:any) => {
   );
 };
 
-export default Titre_login;
+export default TitreLogin;
