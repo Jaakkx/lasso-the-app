@@ -49,14 +49,9 @@ const Home = () => {
     // handleClick();
   });
 
-  const handleClick = async() => {
-    try{
-      const register = await getQuestion();      
+  const handleClick = () => {
+      const register =  getQuestion();      
       return register;
-    }catch(error){
-        alert(error);
-    }
-
   }
 
   const onSwipe = (direction: any) => {
