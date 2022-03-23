@@ -2,7 +2,7 @@ body{
     background-color: #FFE1A6;
     overflow-y: hidden;
 }
-.form{
+form{
     margin-left: 19px;
     margin-right: 19px;
     margin-top: 51px;
@@ -30,7 +30,7 @@ input{
 input:focus, textarea:focus, select:focus{
     outline: none;
 }
-button{
+input[type="submit"]{
     padding: 18px;
     width: 350px;
     font-size: 18px;

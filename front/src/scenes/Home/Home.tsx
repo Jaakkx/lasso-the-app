@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactEventHandler, useEffect, useState } from "react";
 import "./Home.css";
 import TinderCard from "react-tinder-card";
 import CardSwipe from "../../components/CardSwipe.tsx/CardSwipe";
+import { getQuestion } from "../../api";
 
 const db = [
   {
@@ -45,6 +46,16 @@ const Home = () => {
     document.getElementById("item-home")?.classList.add("active");
   });
 
+  const handleClick = async() => {
+    try{
+      const register = await getQuestion();
+      console.log(getQuestion());
+      
+    }catch(error){
+        alert(error);
+    }
+  }
+
   const onSwipe = (direction: any) => {
     console.log("You swiped: " + direction);
   };
@@ -55,6 +66,11 @@ const Home = () => {
 
   return (
     <div id="home">
+      <div
+        onClick={handleClick}
+      >
+        Test
+      </div>
       <div className="card-design">
         <div className="card-container">
           <div className="tinder-card-duplicate">
