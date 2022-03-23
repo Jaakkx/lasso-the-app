@@ -44,7 +44,7 @@ const Home = () => {
     document.getElementsByClassName("background-changer")[0].id = "appHome";
     document.getElementsByClassName("active")[0].classList.remove("active");
     document.getElementById("item-home")?.classList.add("active");
-    console.log(handleClick());
+  handleClick();
     
     // handleClick();
   });
