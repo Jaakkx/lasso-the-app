@@ -33,17 +33,25 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/register/{token}", name="register")
+     * @Route("/register", name="register")
      * @param Request $request
      * @param CsrfTokenManagerInterface $csrfTokenManager
      * @param UserPasswordHasherInterface $userPasswordHasher
      * @param SerializerInterface $serializer
      * @return Response
      */
-    public function register(Request $request, CsrfTokenManagerInterface $csrfTokenManager, $token,
+    public function register(Request $request, CsrfTokenManagerInterface $csrfTokenManager,
                              UserPasswordHasherInterface $userPasswordHasher, SerializerInterface $serializer): Response
     {
         $params = json_decode($request->getContent(), true);
+        //dd($params);
+
+        $results = $serializer->serialize(
+            $params,
+            'json'
+        );
+
+        return new JsonResponse($results, 200, [], true);
 
         if(!isset($params['lastName']) || empty($params['lastName'])){
             throw new HttpException(400, 'missing parameter');
@@ -63,11 +71,11 @@ class RegistrationController extends AbstractController
 
         // tester avec la premiere ou 2e ligne
         // peut etre avoir un id en parametre
-        $token = $csrfTokenManager->getToken('register');
+        // $token = $csrfTokenManager->getToken('register');
         //$token = new CsrfToken('register', $request->attributes->get('token'));
-        if (!$csrfTokenManager->isTokenValid($token)) {
+        /*if (!$csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException('CSRF Token is not valid.');
-        }
+        }*/
         $entityManager = $this->getDoctrine()->getManager();
         $existingUser = $entityManager->getRepository(User::class)->findOneByEmail($params['email']);
         $results = [];
@@ -106,14 +114,14 @@ class RegistrationController extends AbstractController
 
 
     /**
-     * @Route("/login/{token}", name="login")
+     * @Route("/login", name="login")
      * @param Request $request
      * @param CsrfTokenManagerInterface $csrfTokenManager
      * @param UserPasswordHasherInterface $hasher
      * @param SerializerInterface $serializer
      * @return Response
      */
-    public function login(Request $request,CsrfTokenManagerInterface $csrfTokenManager, $token,
+    public function login(Request $request,CsrfTokenManagerInterface $csrfTokenManager,
                           UserPasswordHasherInterface $hasher, SerializerInterface $serializer): Response
     {
         $params = json_decode($request->getContent(), true);
