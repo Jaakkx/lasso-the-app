@@ -32,7 +32,7 @@ class Category
     private $libelle;
 
     /**
-     *
+     * @Groups({"association_group"})
      * @var Collection
      *
      * @ORM\ManyToMany(targetEntity="Association", mappedBy="category")

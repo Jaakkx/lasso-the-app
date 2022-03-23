@@ -89,7 +89,7 @@ class Association
 
     /**
      * @var Collection
-     *
+     * @Groups({"category_group"})
      * @ORM\ManyToMany(targetEntity="Category", inversedBy="association")
      * @ORM\JoinTable(name="association_category",
      *   joinColumns={

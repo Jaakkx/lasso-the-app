@@ -21,25 +21,27 @@ class AssociationController extends AbstractController
     /**
      * @Route("/association", name="app_association")
      * @param AssociationRepository $associationRepository
-     * @param EntityManager $entityManager
+     * @param CategoryRepository $categoryRepository
      * @param SerializerInterface $serializer
      * @return JsonResponse
      */
-    public function getAssociation(AssociationRepository $associationRepository, SerializerInterface $serializer): JsonResponse
+    public function getAssociation(AssociationRepository $associationRepository,CategoryRepository $categoryRepository,SerializerInterface $serializer): JsonResponse
     {
 
         // affiche toutes les associations
         //$associations = $entityManager->getRepository(Association::class)->findAll();
-        //$associations = $associationRepository->findAll();
+        $category = $categoryRepository->findOneById(1);
+        //$association = $associations->getCategory();
 
         //dd($associations);
         //dd($associations);
-        /*$results = $serializer->serialize(
-            $associations,
-            'json'
-        );*/
+        $results = $serializer->serialize(
+            $category,
+            'json',
+            array('groups' => array('association_group'))
+        );
 
-        //return new JsonResponse($results, 200, [], true);
+        return new JsonResponse($results, 200, [], true);
 
 
         return $this->json([
