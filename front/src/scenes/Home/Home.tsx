@@ -3,6 +3,7 @@ import "./Home.css";
 import TinderCard from "react-tinder-card";
 import CardSwipe from "../../components/CardSwipe.tsx/CardSwipe";
 import { getQuestion } from "../../api";
+import { Question } from "../../decl/Question.decl";
 
 const db = [
   {
@@ -28,7 +29,7 @@ const db = [
 ];
 
 const Home = () => {
-  const questions = db;
+  const [questions, setQuestions] = useState<Question[]>();
   const [lastDirection, setLastDirection] = useState();
   const [allQuestions, setAllQuestions] = useState();
 
@@ -37,7 +38,7 @@ const Home = () => {
     setLastDirection(direction);
   };
 
-  const outOfFrame = (name: string) => {
+  const outOfFrame = (name: number) => {
     console.log(name + " left the screen!");
   };
 
@@ -45,13 +46,12 @@ const Home = () => {
     document.getElementsByClassName("background-changer")[0].id = "appHome";
     document.getElementsByClassName("active")[0].classList.remove("active");
     document.getElementById("item-home")?.classList.add("active");
-    console.log( handleClick());
-    // handleClick();
-  });
+    handleLaunch();
+  }, []);
 
-  const handleClick = () => {
-      const register =  getQuestion();      
-      return register;
+  const handleLaunch = async () => {
+      const register =  await getQuestion();   
+      setQuestions(register);         
   }
 
   const onSwipe = (direction: any) => {
@@ -64,22 +64,17 @@ const Home = () => {
 
   return (
     <div id="home">
-      {/* <div
-        onClick={handleClick}
-      >
-        Test
-      </div> */}
       <div className="card-design">
         <div className="card-container">
           <div className="tinder-card-duplicate">
-            {questions.map((question) => (
+            {questions?.map((question) => (
                 <TinderCard
                 className="tinder-card"
-                key={question.name}
-                onSwipe={(dir) => swiped(dir, question.name)}
-                onCardLeftScreen={() => outOfFrame(question.name)}
+                key={question.id}
+                onSwipe={(dir) => swiped(dir, question.id)}
+                onCardLeftScreen={() => outOfFrame(question.id)}
                 >
-                <CardSwipe questionContent={question.name} />
+                <CardSwipe questionContent={question.libelle} />
               </TinderCard>
             ))}
           </div>

@@ -36,7 +36,9 @@ function App() {
             <Route path="/classement" element={<Ranked />} />
             <Route path="/associations" element={<AllAsso />} />
             <Route path="/social" element={<SocialPage />} />
-            <Route path="/ton_asso" element={<SingleAsso />} />
+            <Route path="/asso">
+              <Route path=":assoId"  element={<SingleAsso />}/>
+            </Route>
           </Routes>
         </div>
       </div>

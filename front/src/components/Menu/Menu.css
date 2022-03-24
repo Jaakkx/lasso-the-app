@@ -2,10 +2,12 @@
 ** Menu settings
 */
 
-.navbar{
-    height: 7%;
-    border-top: solid #b1a184 1px;
-    display: flex;
-    justify-content: space-around;
-    background-color: #FEEED0;    
+.navbar {
+    height          : 7%;
+    display         : flex;
+    justify-content : space-around;
+    background-color: #fff;
+    position        : relative;
+    z-index         : 100;
+
 }

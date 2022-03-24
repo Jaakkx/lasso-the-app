@@ -14,7 +14,6 @@ const Ranked = () => {
     <div className="main">
       <div className="flux_ranked_card">
         <h1 className="title_ranked_page">Mon classement</h1>
-        {/* <ButtonLike/> */}
         <RankedCard
           TitleCard="Nom de l'Asso que j'adore"
           ContentCard="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu lobortis tortor sem lacus, dictumst consectetur urna. Consequat, eleifend in id egestas at ultricies vitae sit.Lorem ipsum dolor sit amet, consectetur.

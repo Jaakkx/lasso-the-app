@@ -54,7 +54,7 @@ const ItemsMenu = (props: any) => {
       );
     } else if (props.type === "social") {
       return (
-        <Link className="items-menu" to={"/ton_asso"}>
+        <Link className="items-menu" to={"/social"}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 121.96 99.1" id={"item-"+props.type}>
             <g id="groupe-menu__social" data-name="Menu Social">
               <path d="M121.72,56.39c.42-6.89.35-8.9-.74-23.81.3-10.57,1.92-19.65-1.14-27.23S102.66.51,99.44.39,92.89-.14,79.25.86,49.39,3,45,3.11s-11.23,1-13.63,4.18c0,0-2.19,2.34-2.68,10.6s-1.14,15.88-.32,28c.16,10.89,5,11.83,9.89,14.58s23.6,2.16,27.35,2,30.12,1,36.66,1.4S121.31,63.28,121.72,56.39Z" />
