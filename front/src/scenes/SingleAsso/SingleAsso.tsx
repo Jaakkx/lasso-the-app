@@ -1,28 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TitreLogin from "../../components/TitreLogin.tsx/TitreLogin";
-import './SingleAsso.css';
+import "./SingleAsso.css";
 import { fakeAuthProvider } from "../../components/auth";
-import image from '../../assets/images/Asso/resto_du_coeur.png';
+import image from "../../assets/images/Asso/resto_du_coeur.png";
+import { useParams } from "react-router-dom";
+import { getSingleAsso } from "../../api";
+import { Asso } from "../../decl/Asso.decl";
 
-const SingleAsso = (props:any) => {
-    return(
-        <div className="main">
-            <div className="cards">
-            <h1 className="nom-asso">Nom de l'Asso</h1>
-            <img  src={image} className="logo"/>
-            <h2 className="decouvrir">Nous découvrir</h2>
-                <p className="resume">Fondés par Coluche en 1985, les Restos du Cœur est une association loi de 1901, reconnue d’utilité publique, sous le nom officiel de « les Restaurants du Cœur – les Relais du Cœur ». Ils ont pour but « d’aider et d’apporter une assistance bénévole aux personnes démunies, notamment dans le domaine alimentaire par l’accès à des repas gratuits, et par la participation à leur insertion sociale et économique, ainsi qu’à toute action contre la pauvreté sous toutes ses formes ».</p>
-            </div>
-            <div className="button">
-                <a href="https://www.restosducoeur.org/" className="">Voir le site</a>
-                {/* <button type="submit" onClick={()=>{
-                    props.setToken(fakeAuthProvider);
-                    }}>
-                        Voir le site
-                </button> */}
-            </div>
+const SingleAsso = (props: any) => {
+  let { assoId } = useParams();
+  const [theAsso, setTheAsso] = useState<Asso>();
+
+  useEffect(() => {
+    theSingleAsso();
+  }, []);
+
+  const theSingleAsso = async () => {
+    const res = await getSingleAsso(assoId!);
+    setTheAsso(res);
+    console.log(theAsso?.webSite);
+  };
+
+  return (
+    <div className="main">
+      <div className="cards cards-asso">
+        <h1 className="nom-asso">{theAsso?.name}</h1>
+        <img src={theAsso?.picture} className="logo" />
+        <h2 className="decouvrir">Nous découvrir</h2>
+        <p className="resume">{theAsso?.description}</p>
+        <div className="assos-infos">
+          <div>
+            <h3>Numéro de téléphone</h3>
+            <p>{theAsso?.phoneNumber}</p>
+          </div>
+          <div>
+            <h3>Adresse</h3>
+            <p>{theAsso?.adress}</p>
+          </div>
         </div>
-    );
-}
+      </div>
+      <div className="button">
+        <a target="_blank" href={theAsso?.webSite} className="">
+          Voir le site
+        </a>
+      </div>
+    </div>
+  );
+};
 
 export default SingleAsso;

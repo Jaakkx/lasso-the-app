@@ -1,14 +1,12 @@
 import React from "react";
-import './CardSwipe.css';
+import "./CardSwipe.css";
 
-const CardSwipe = (props:any) => {
-    return(
-        <div className="card-swipe">
-            {
-                props.questionContent
-            }
-        </div>
-    );
-}
+const CardSwipe = (props: any) => {
+  return (
+    <div className="card-swipe">
+      <p>{props.questionContent}</p>
+    </div>
+  );
+};
 
 export default CardSwipe;

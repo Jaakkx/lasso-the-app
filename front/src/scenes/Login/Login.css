@@ -1,68 +1,88 @@
-body{
+body {
     background-color: #FFE1A6;
-    overflow-y: hidden;
+    overflow-y      : hidden;
 }
-.form{
-    margin-left: 19px;
-    margin-right: 19px;
-    margin-top: 151px;
-    display: flex;
-    flex-wrap: wrap;
-}
-p{
-    margin-bottom: 8px;
-    margin-top: 16px;
-    font-size: 17px;
-    font-weight: bold;
-    font-family: "GothamBook";
-}
-input{
-    padding-top: 17px;
-    padding-bottom: 18px;
-    padding-left: 18px;
-    width: 331px;
-    border-radius: 15px;
-    border: none;
-    font-size: 16px;
-    margin-left: auto;
-    margin-right: auto;
-}
-input:focus, textarea:focus, select:focus{
-    outline: none;
-}
-.mdp-oublier{
-    margin-top: 6px;
-    float: left;
-    font-size: 13px;
-    margin-bottom: 19px;
-    font-weight: normal;
-}
-button{
-    padding: 18px;
-    width: 350px;
-    font-size: 18px;
-    border-radius: 15px;
-    border: none;
-    color: white;
-    background-color: #6D1A00;
-    font-family: "GothamBook";
+
+.login {
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
 
 }
-.Login{
+
+.form {
+    margin-left   : 19px;
+    margin-right  : 19px;
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+    flex-wrap     : wrap;
+}
+
+p {
+    margin-bottom: 8px;
+    margin-top   : 16px;
+    font-size    : 17px;
+    font-weight  : bold;
+    font-family  : "GothamBook";
+}
+
+input {
+    padding-top   : 17px;
+    padding-bottom: 18px;
+    padding-left  : 18px;
+    width         : 331px;
+    border-radius : 15px;
+    border        : none;
+    font-size     : 16px;
+    margin-left   : auto;
+    margin-right  : auto;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+}
+
+.mdp-oublier {
+    margin-top   : 6px;
+    float        : left;
+    font-size    : 13px;
+    margin-bottom: 19px;
+    font-weight  : normal;
+}
+
+button {
+    padding         : 18px;
+    width           : 350px;
+    font-size       : 18px;
+    border-radius   : 15px;
+    border          : none;
+    color           : white;
+    background-color: #6D1A00;
+    font-family     : "GothamBook";
+
+}
+
+.Login {
     margin-top: 20px;
 }
-.second-button{
-    background: none;
-    color: black;
-    font-size: 16px;
-    width: 350px;
-    text-align: center;
+
+.second-button {
+    background     : none;
+    color          : black;
+    font-size      : 16px;
+    width          : 350px;
+    text-align     : center;
     text-decoration: none;
 }
-p:first-child{
+
+p:first-child {
     font-family: "GothamBold";
 }
-.center{
-    margin-left: auto;
+
+.center {
+    margin-left : auto;
     margin-right: auto;
 }
