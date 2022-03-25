@@ -91,13 +91,9 @@ CREATE TABLE `association_category` (
 
 LOCK TABLES `association_category` WRITE;
 /*!40000 ALTER TABLE `association_category` DISABLE KEYS */;
-INSERT INTO `association_category` VALUES (1,7),(1,8),(1,9),(1,10);
+INSERT INTO `association_category` VALUES (1,7),(1,8),(1,9),(1,10), (2,7),(2,9),(3,3),(3,8),(3,9),(4,4),(4,9),(5,9),(6,7),(6,8),(6,9),(7,4),(7,7),(7,9),(7,10),(8,4),(8,7),(8,9),(9,3),(9,4),(9,8),(9,9),(10,2),(10,4);
 
-INSERT INTO `association_category` VALUES (6,7),(6,8),(6,9);
-INSERT INTO `association_category` VALUES (9,8),(9,9);
-
-INSERT INTO `association_category` VALUES (2,7),(2,9);
-,(2,7),(2,9),(3,3),(3,8),(3,9),(4,4),(4,9),(5,9),(6,7),(6,8),(6,9),(7,4),(7,7),(7,9),(7,10),(8,4),(8,7),(8,9),(9,3),(9,4),(9,8),(9,9),(10,2),(10,4),(11,4),(11,7),(11,9),(12,4),(12,9),(13,3),(13,9),(14,3),(14,9),(15,2),(15,5),(16,5),(16,7),(16,10),(17,2),(17,10),(18,7),(18,8),(18,9),(19,5),(19,7),(19,10),(20,5),(20,10),(21,3),(21,4),(21,9);
+INSERT INTO `association_category` VALUES (11,4),(11,7),(11,9),(12,4),(12,9),(13,3),(13,9),(14,3),(14,9),(15,2),(15,5),(16,5),(16,7),(16,10),(17,2),(17,10),(18,7),(18,8),(18,9),(19,5),(19,7),(19,10),(20,5),(20,10),(21,3),(21,4),(21,9);
 /*!40000 ALTER TABLE `association_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,9 +349,10 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,NULL,NULL,NULL,'j_beining@hetic.eu','Jael','Beining','$2y$13$sQ8zK/geFrAbKxdYkAdPD.cAupazAWtBqzWgAOMQ6GuO/ElthJZzK');
-INSERT INTO `user` VALUES (2,NULL,NULL,NULL,'simon.durant@gmail.com','Simon','Durant','$2y$13$yuwe2s8kFNLOxrouj8FNJ.xJOzE4MkMJmke3AaFxBT9vZ16Rx0ABu');
-INSERT INTO `user` VALUES (4,NULL,NULL,NULL,'simon2.durant@gmail.com','Simon2','Durant2','$2y$13$LeIIqy1viQLjmm6Ss.mDmeE9BVjpKurMrDYpEafJxD5ZXchKKtDWC');
+INSERT INTO `user` VALUES (1,NULL,NULL,'j_beining@hetic.eu','Jael','Beining','$2y$13$sQ8zK/geFrAbKxdYkAdPD.cAupazAWtBqzWgAOMQ6GuO/ElthJZzK');
+INSERT INTO `user` VALUES (2,NULL,NULL,'simon.durant@gmail.com','Simon','Durant','$2y$13$yuwe2s8kFNLOxrouj8FNJ.xJOzE4MkMJmke3AaFxBT9vZ16Rx0ABu');
+INSERT INTO `user` VALUES (3,NULL,NULL,'simon3.durant@gmail.com','Simon3','Durant3','$2y$13$LeIIqy1viQLjmm6Ss.mDmeE9BVjpKurMrDYpEafJxD5ZXchKKtDWC');
+INSERT INTO `user` VALUES (4,NULL,NULL,'simon2.durant@gmail.com','Simon2','Durant2','$2y$13$LeIIqy1viQLjmm6Ss.mDmeE9BVjpKurMrDYpEafJxD5ZXchKKtDWC');
 INSERT INTO `user` VALUES (5,NULL,NULL,NULL,'test.test@gmail.com','Test','Test','$2y$13$oC4AuaLVY9y2S9SEJCaC0O9126vmxJX8z0mDx0WFu8d1uaCAv8Dyq');
 INSERT INTO `user` VALUES (6,NULL,NULL,NULL,'lisa.doyen@gmail.com','Lisa','Doyen','$2y$13$TRleKPRCaBPRF30cSFA.lu/B8/XiBpLUkmb3s28.JLrq/oStAit7u');
 INSERT INTO `user` VALUES (7,NULL,NULL,NULL,'test3.test3@gmail.com','test3','test3','$2y$13$T0/9qpX0gQbs2UAb/ShIjubUnQUQic6MyEEcMkgYGDjHF7..WR/Au');

@@ -135,17 +135,17 @@ class RegistrationController extends AbstractController
 
         // tester avec la premiere ou 2e ligne
         // peut etre avoir un id en parametre
-        $token = $csrfTokenManager->getToken('register');
+        // $token = $csrfTokenManager->getToken('register');
         //$token = new CsrfToken('register', $request->attributes->get('token'));
-        if (!$csrfTokenManager->isTokenValid($token)) {
+        /*if (!$csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException('CSRF Token is not valid.');
-        }
+        }*/
 
         $entityManager = $this->getDoctrine()->getManager();
         $existingUser = $entityManager->getRepository(User::class)->findOneByEmail($params['email']);
 
         if($existingUser == null) throw new HttpException(400, 'unknown email');
-        else $user= $existingUser;
+        else $user = $existingUser;
 
         if(!$hasher->isPasswordValid($user, $params['password'])){
             throw new HttpException(400, 'invalid password');
