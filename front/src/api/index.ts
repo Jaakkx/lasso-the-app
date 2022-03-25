@@ -4,6 +4,7 @@ import { registerUser } from '../decl/registerUser.decl';
 import { loginUser } from '../decl/loginUser.decl';
 import { Asso } from '../decl/Asso.decl';
 import { updateRanking } from '../decl/updateRanking.decl';
+import { rank } from '../decl/rank.decl';
 
 export const registeringUser = async (registerUser:registerUser) => {      
     try{
@@ -85,5 +86,16 @@ export const updateRank = async(updateRanking:updateRanking) => {
         return res.data;
     }catch(error) {
         throw new Error("Problème lors de la mise à jour du classement");
+    }
+}
+
+export const getRank = async(userId:number):Promise<rank[]> => {
+    try{
+        const res = await axios.get(
+            `${process.env.REACT_APP_BASE_URL}/ranking/${userId}`,
+        )
+        return res.data
+    }catch(error) {
+        throw new Error("Problèmeq lors de la récupération du classement");
     }
 }

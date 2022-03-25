@@ -120,6 +120,7 @@ const Home = () => {
       <div className="card-design">
         <div className="card-container">
           <div className="tinder-card-duplicate">
+            Fin des questions !
             {questions?.map((question, index) => (
               <TinderCard
                 className="tinder-card"
