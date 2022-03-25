@@ -33,6 +33,7 @@ class Favoris
      */
     private $associations;
 
+
     /**
      * @ORM\Column(type="boolean")
      */
@@ -78,9 +79,9 @@ class Favoris
         return $this->favorisUser;
     }
 
-    public function setFavUser(?User $favUser): self
+    public function setFavUser(?User $favorisUser): self
     {
-        $this->favorisUser = $favUser;
+        $this->favorisUser = $favorisUser;
 
         return $this;
     }

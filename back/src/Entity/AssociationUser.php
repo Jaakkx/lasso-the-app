@@ -40,6 +40,16 @@ class AssociationUser
      */
     private $associationName;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $associationId;
+
+    /**
+     * @ORM\Column(type="string", length=4000)
+     */
+    private $associationDescription;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -94,6 +104,30 @@ class AssociationUser
     public function setAssociationName(string $associationName): self
     {
         $this->associationName = $associationName;
+
+        return $this;
+    }
+
+    public function getAssociationId(): ?int
+    {
+        return $this->associationId;
+    }
+
+    public function setAssociationId(int $associationId): self
+    {
+        $this->associationId = $associationId;
+
+        return $this;
+    }
+
+    public function getAssociationDescription(): ?string
+    {
+        return $this->associationDescription;
+    }
+
+    public function setAssociationDescription(string $associationDescription): self
+    {
+        $this->associationDescription = $associationDescription;
 
         return $this;
     }
