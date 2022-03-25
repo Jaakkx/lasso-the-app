@@ -1,0 +1,18 @@
+.main{
+    flex: 1;
+    height: 100%;
+}
+
+.flux_ranked_card{
+    margin: 0 19px 0 19px;
+}
+.title_ranked_page{
+    margin: 0 0 24px 0;
+    color: #6D1A00;
+    font-family: 'GothamBold';
+    font-size: 24px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}

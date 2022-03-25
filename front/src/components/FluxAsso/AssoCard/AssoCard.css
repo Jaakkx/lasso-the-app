@@ -1,0 +1,63 @@
+/*
+**AssoCard Settings
+*/
+.container-asso-card{
+    height: 170px;
+    margin: 0 0 16px 0;
+    padding: 16px;
+    background-color: white;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 8px 20px -4px rgba(0, 0, 0, 0.15);
+}
+.title_ranked_card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: "GothamBold";
+    font-size: 22px;
+}
+
+.title_card{
+    margin:0;
+    margin-right: auto;
+    width: 245px;
+    height: fit-content;
+}
+
+
+.content_card{
+    margin: 8px 0 0 0;
+    line-height: 120%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    font-family: "GothamBook";
+    font-size: 12px;
+}
+
+.asso-card-logo{
+    height: 50px;
+    width: 90px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.asso-card-logo img{
+    max-height: 100%;
+}
+
+.link-single-asso{
+    width: fit-content;
+    color: #6D1A00;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border: 1px solid #6D1A00;
+    border-radius: 50px 50px;
+    font-size: 12px;
+    font-family: "GothamBook";
+}

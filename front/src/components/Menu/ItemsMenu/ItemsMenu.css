@@ -1,0 +1,19 @@
+/*
+**Items Menu settings
+*/
+.items-menu{
+    display: flex;
+    align-items: center;
+}
+
+.items-menu svg {
+    width: 30px;
+}
+
+.path-menu{
+    fill: #fff;
+}
+
+.items-menu .active{
+    fill: #6D1A00;
+}

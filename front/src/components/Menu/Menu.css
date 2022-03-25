@@ -1,0 +1,13 @@
+/*
+** Menu settings
+*/
+
+.navbar {
+    height          : 7%;
+    display         : flex;
+    justify-content : space-around;
+    background-color: #fff;
+    position        : relative;
+    z-index         : 100;
+
+}

@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lasso-the-app-deployment
+  labels:
+    app: lasso-the-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lasso-the-app
+  template:
+    metadata:
+      labels:
+        app: lasso-the-app
+    spec:
+      initContainers:
+        - name: init-lasso-the-app
+          image: lisadoyen/lasso-the-app:latest
+          command: ["php", "bin/console", "doctrine:migration:migrate", "--no-interaction"]
+          env:
+            - name: APP_ENV
+              value: prod
+            - name: APP_SECRET
+              value: fa28252979dfc86a36537998535d394a
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: lasso-the-app
+                  key: database_url
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512M
+            limits:
+              cpu: 250m
+              memory: 512M
+      containers:
+        - name: nginx-lasso-the-app
+          image: nginx:1-alpine
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512M
+            limits:
+              cpu: 250m
+              memory: 512M
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d
+        - name: php-lasso-the-app
+          image: lisadoyen/lasso-the-app:latest
+          env:
+            - name: APP_ENV
+              value: prod
+            - name: APP_SECRET
+              value: fa28252979dfc86a36537998535d394a
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: lasso-the-app
+                  key: database_url
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512M
+            limits:
+              cpu: 250m
+              memory: 512M
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: lasso-the-app-configmap
+            items:
+              - key: nginx-config
+                path: site.conf

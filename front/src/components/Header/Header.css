@@ -1,0 +1,34 @@
+/*
+**Header Settings
+*/
+
+header.header {
+    height               : 10%;
+    display              : flex;
+    flex-direction       : row;
+    justify-content      : space-between;
+    align-items          : center;
+    padding              : 1.5vh 7% 0 7%;
+    padding-top          : 1.5vh;
+    -webkit-touch-callout: none;
+    -webkit-user-select  : none;
+    -khtml-user-select   : none;
+    -moz-user-select     : none;
+    -ms-user-select      : none;
+    user-select          : none;
+}
+
+.header p {
+    font-family: "GothamBold";
+    margin     : 0;
+}
+
+.header h1 {
+    font-size  : 2.3em;
+    font-family: "Cactus";
+}
+
+.profile-container {
+    height: fit-content;
+    cursor: pointer;
+}
