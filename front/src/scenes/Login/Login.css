@@ -19,11 +19,10 @@ body {
     flex-wrap     : wrap;
 }
 
-p {
+.login p {
     margin-bottom: 8px;
     margin-top   : 16px;
     font-size    : 17px;
-    font-weight  : bold;
     font-family  : "GothamBook";
 }
 
@@ -42,9 +41,9 @@ p {
 
 
 
-input:focus,
-textarea:focus,
-select:focus {
+.login input:focus,
+.login textarea:focus,
+.login select:focus {
     outline: none;
 }
 

@@ -1,0 +1,25 @@
+.button-swipe {
+    height: 60px;
+    width: 60px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.button-swipe svg {
+    width: 60%;
+    height: fit-content;
+}
+
+.button-swipe.right svg {
+    padding: 5% 0 0 5%;
+}
+.button-swipe.left svg {
+    padding:0 5% 0 0;
+}
+
+.right #swipe-right path {
+    fill:#6D1A00;
+}

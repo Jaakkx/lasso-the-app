@@ -4,43 +4,12 @@ import TinderCard from "react-tinder-card";
 import CardSwipe from "../../components/CardSwipe.tsx/CardSwipe";
 import { getQuestion } from "../../api";
 import { Question } from "../../decl/Question.decl";
-
-const db = [
-  {
-    name: "test1",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget urna eu ante consequat hendrerit vel rhoncus orci. Nullam neque augue, luctus ut nulla ac, tincidunt gravida tortor. Curabitur suscipit lacus et porta posuere. Integer tristique lobortis tellus, vel aliquet urna elementum ac.",
-  },
-  {
-    name: "test2",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget urna eu ante consequat hendrerit vel rhoncus orci. Nullam neque augue, luctus ut nulla ac, tincidunt gravida tortor. Curabitur suscipit lacus et porta posuere. Integer tristique lobortis tellus, vel aliquet urna elementum ac.",
-  },
-  {
-    name: "test3",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget urna eu ante consequat hendrerit vel rhoncus orci. Nullam neque augue, luctus ut nulla ac, tincidunt gravida tortor. Curabitur suscipit lacus et porta posuere. Integer tristique lobortis tellus, vel aliquet urna elementum ac.",
-  },
-  {
-    name: "test4",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget urna eu ante consequat hendrerit vel rhoncus orci. Nullam neque augue, luctus ut nulla ac, tincidunt gravida tortor. Curabitur suscipit lacus et porta posuere. Integer tristique lobortis tellus, vel aliquet urna elementum ac.",
-  },
-];
+import ButtonSwipe from "../../components/ButtonSwipe/ButtonSwipe";
 
 const Home = () => {
   const [questions, setQuestions] = useState<Question[]>();
   const [lastDirection, setLastDirection] = useState();
   const [allQuestions, setAllQuestions] = useState();
-
-  const swiped = (direction: any, nameToDelete: any) => {
-    console.log("removing: " + nameToDelete);
-    setLastDirection(direction);
-  };
-
-  const outOfFrame = (name: number) => {
-    console.log(name + " left the screen!");
-  };
 
   useEffect(() => {
     document.getElementsByClassName("background-changer")[0].id = "appHome";
@@ -63,6 +32,15 @@ const Home = () => {
       ];
     }
     setQuestions(register);
+  };
+
+  const swiped = (direction: any, nameToDelete: any) => {
+    console.log("removing: " + nameToDelete);
+    setLastDirection(direction);
+  };
+
+  const outOfFrame = (name: number) => {
+    console.log(name + " left the screen!");
   };
 
   const onSwipe = (direction: any) => {
@@ -90,6 +68,10 @@ const Home = () => {
             ))}
           </div>
         </div>
+      </div>
+      <div className="button-swipe-parent">
+        <ButtonSwipe side='left' onSwipe={swiped}/>
+        <ButtonSwipe side='right'/>
       </div>
     </div>
   );

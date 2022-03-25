@@ -3,13 +3,14 @@
     text-align: center;
     margin-top: 5vh;
 }
+
 h5{
     margin: 0px;
     font-size: 32px;
     color: #6D1A00;
     font-family: "Cactus"
 }
-.slogan{
+.titre-login p.slogan{
     font-size: 16px;
     margin-top: 0px;
     font-family: "GothamBold";

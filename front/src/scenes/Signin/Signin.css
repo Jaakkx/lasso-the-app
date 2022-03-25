@@ -19,15 +19,14 @@ form {
     align-items   : center;
 }
 
-p {
+.signin p {
     margin-bottom: 8px;
     margin-top   : 16px;
     font-size    : 17px;
-    font-weight  : bold;
     font-family  : "GothamBook";
 }
 
-input {
+.signin input {
     padding-top   : 17px;
     padding-bottom: 18px;
     padding-left  : 18px;
@@ -39,9 +38,9 @@ input {
     margin-right  : auto;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
+.signin input:focus,
+.signintextarea:focus,
+.signin select:focus {
     outline: none;
 }
 
@@ -54,7 +53,7 @@ input[type="submit"] {
     border          : none;
     color           : white;
     background-color: #6D1A00;
-    font-family     : "GothamBook";
+    font-family     : "GothamBold";
 }
 
 .second-button {
