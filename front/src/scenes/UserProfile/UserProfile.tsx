@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getUser } from "../../api";
 import { registerUser } from "../../decl/registerUser.decl";
 import "./UserProfile.css";
 
-const UserProfile = () => {
+const UserProfile = (props: any) => {
   const [theProfil, setTheProfil] = useState<registerUser>();
+  const [isOk, setIsOk] = useState(true);
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     document.getElementsByClassName("background-changer")[0].id = "appProfile";
@@ -15,6 +19,12 @@ const UserProfile = () => {
     let theProfile = await getUser(sessionStorage.getItem("Id")!);
     setTheProfil(theProfile);
   };
+
+  // const deconexion = () => {
+  //   sessionStorage.clear();
+  //   setIsOk(false);
+  //   navigate('/');
+  // }
 
   return (
     <div className="card-profile-wrapper">
@@ -71,6 +81,38 @@ const UserProfile = () => {
           </svg>
           <p>{theProfil?.email}</p>
         </div>
+        <div onClick={() => console.log("deconnexion")}>
+          <svg
+            width="19"
+            height="19"
+            viewBox="0 0 19 19"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g clip-path="url(#clip0_814_500)">
+              <path
+                d="M16.625 16.625L2.375 2.375"
+                stroke="#252525"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M16.625 2.375L2.375 16.625"
+                stroke="#252525"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_814_500">
+                <rect width="19" height="19" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>{" "}
+          <p>Se déconnecter</p>
+        </div>
         <div>
           <svg
             width="12"
@@ -90,9 +132,7 @@ const UserProfile = () => {
               fill="#252525"
             />
           </svg>
-          <p>
-              Réinitialiser le classement
-          </p>
+          <p>Réinitialiser le classement</p>
         </div>
       </div>
     </div>

@@ -3,4 +3,5 @@ export type rank = {
     id:number,
     description:string,
     associationId:number,
+    message:string,
 }

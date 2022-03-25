@@ -41,7 +41,7 @@ function App() {
               <Route path=":assoId" element={<SingleAsso />} />
             </Route>
             <Route path="/profile:userId" element={<UserProfile />}>
-              <Route path=":userId" element={<UserProfile />} />
+              <Route path=":userId" element={<UserProfile setToken={setToken}/>} />
             </Route>
           </Routes>
         </div>
