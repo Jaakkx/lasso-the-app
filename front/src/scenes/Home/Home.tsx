@@ -8,7 +8,7 @@ import React, {
 import "./Home.css";
 import TinderCard from "react-tinder-card";
 import CardSwipe from "../../components/CardSwipe.tsx/CardSwipe";
-import { getQuestion } from "../../api";
+import { getQuestion, updateRank } from "../../api";
 import { Question } from "../../decl/Question.decl";
 import ButtonSwipe from "../../components/ButtonSwipe/ButtonSwipe";
 
@@ -66,25 +66,41 @@ const Home = () => {
   // }
 
   const handleLaunch = async () => {
-    const register = await getQuestion();
-    // setCurrentIndex(questions!.length);
-    let randomQuestion: Question[];
-    let currentIndex = register.length,
-      randomIndex;
-    while (currentIndex != 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-      [register[currentIndex], register[randomIndex]] = [
-        register[randomIndex],
-        register[currentIndex],
-      ];
-    }
+    const userId:number = parseInt(sessionStorage.getItem('Id') || '', 10);
+    const register = await getQuestion(userId);
+    console.log(register);
+    
+    // let currentIndex = register.length,
+    //   randomIndex;
+    //   console.log(currentIndex);
+    //   for (let i = register.length - 1; i > 0; i--) {
+    //     const j = Math.floor(Math.random() * (i + 1));
+    //     [register[i], register[j]] = [
+    //       register[j],
+    //       register[i],
+    //     ];
+    //   }
+    //   console.log(register);
+      
+    // while (currentIndex != 0) {
+    //   randomIndex = Math.floor(Math.random() * currentIndex);
+    //   currentIndex--;
+      // [register[currentIndex], register[randomIndex]] = [
+      //   register[randomIndex],
+      //   register[currentIndex],
+      // ];
+    // }
     setQuestions(register);
   };
 
-  const swiped = (direction: any, nameToDelete: any) => {
-    console.log("removing: " + nameToDelete);
-    setLastDirection(direction);
+  const swiped = async(swipe: any, questionId: number) => {
+    console.log("removing: " + questionId);
+    console.log(swipe);
+    const userId:number = parseInt(sessionStorage.getItem('Id') || '', 10);
+    const update = await updateRank({questionId, userId, swipe})
+    setLastDirection(swipe);
+    console.log(update);
+    
   };
 
   const outOfFrame = (name: number) => {

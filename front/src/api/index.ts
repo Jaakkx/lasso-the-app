@@ -3,6 +3,7 @@ import { Question } from '../decl/Question.decl';
 import { registerUser } from '../decl/registerUser.decl';
 import { loginUser } from '../decl/loginUser.decl';
 import { Asso } from '../decl/Asso.decl';
+import { updateRanking } from '../decl/updateRanking.decl';
 
 export const registeringUser = async (registerUser:registerUser) => {      
     try{
@@ -29,11 +30,11 @@ export const setLoginUser = async (loginUser: loginUser) => {
         }
 }
 
-export const getQuestion = async ():Promise<Array<Question>> => {
+export const getQuestion = async (userId:number):Promise<Array<Question>> => {
 
     try{
         const res = await axios.get(
-            `${process.env.REACT_APP_BASE_URL}/question`
+            `${process.env.REACT_APP_BASE_URL}/random/question/${userId}`
         )
         return res.data;        
     } catch(error) {
@@ -72,5 +73,17 @@ export const getUser = async(id:string):Promise<registerUser> => {
         return res.data;
     }catch(error) {
         throw new Error("Problème lors de l récupération du profile");
+    }
+}
+
+export const updateRank = async(updateRanking:updateRanking) => {
+    try{
+        const res = await axios.post(
+            `${process.env.REACT_APP_BASE_URL}/update/ranking/${updateRanking.userId}/${updateRanking.questionId}/${updateRanking.swipe}`,
+            updateRanking
+        )
+        return res.data;
+    }catch(error) {
+        throw new Error("Problème lors de la mise à jour du classement");
     }
 }
