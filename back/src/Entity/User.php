@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * User
  *
- * @ORM\Table(name="user", indexes={@ORM\Index(name="IDX_8D93D649BCB134CE", columns={"questions_id"}), @ORM\Index(name="IDX_8D93D649D4EBF353", columns={"questions_user_id"}),  @ORM\Index(name="IDX_8D93D6494122538A", columns={"associations_id"})})
+ * @ORM\Table(name="user", indexes={@ORM\Index(name="IDX_8D93D649BCB134CE", columns={"questions_id"}),  @ORM\Index(name="IDX_8D93D6494122538A", columns={"associations_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
@@ -73,23 +73,26 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
 
 
     /**
-     * @var \QuestionUser
-     *
-     * @ORM\ManyToOne(targetEntity="QuestionUser")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="questions_user_id", referencedColumnName="id")
-     * })
-     */
-    private $questionsUser;
-
-    /**
      * @ORM\ManyToMany(targetEntity=AssociationUser::class, mappedBy="users")
      */
     private $associationUsers;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=QuestionUser::class, inversedBy="users")
+     */
+    private $questionsUser;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Favoris::class, mappedBy="favUser")
+     */
+    private $UserFav;
+
+
     public function __construct()
     {
         $this->associationUsers = new ArrayCollection();
+        $this->questionsUser = new ArrayCollection();
+        $this->UserFav = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -169,18 +172,6 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
         return $this;
     }
 
-    public function getQuestionsUser(): ?QuestionUser
-    {
-        return $this->questionsUser;
-    }
-
-    public function setQuestionsUser(?QuestionUser $questionsUser): self
-    {
-        $this->questionsUser = $questionsUser;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, AssociationUser>
      */
@@ -203,6 +194,59 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
     {
         if ($this->associationUsers->removeElement($associationUser)) {
             $associationUser->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, QuestionUser>
+     */
+    public function getQuestionsUser(): Collection
+    {
+        return $this->questionsUser;
+    }
+
+    public function addQuestionsUser(QuestionUser $questionsUser): self
+    {
+        if (!$this->questionsUser->contains($questionsUser)) {
+            $this->questionsUser[] = $questionsUser;
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionsUser(QuestionUser $questionsUser): self
+    {
+        $this->questionsUser->removeElement($questionsUser);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favoris>
+     */
+    public function getUserFav(): Collection
+    {
+        return $this->UserFav;
+    }
+
+    public function addUserFav(Favoris $userFav): self
+    {
+        if (!$this->UserFav->contains($userFav)) {
+            $this->UserFav[] = $userFav;
+            $userFav->setFavUser($this);
+        }
+        return $this;
+    }
+
+    public function removeUserFav(Favoris $userFav): self
+    {
+        if ($this->UserFav->removeElement($userFav)) {
+            // set the owning side to null (unless already changed)
+            if ($userFav->getFavUser() === $this) {
+                $userFav->setFavUser(null);
+            }
         }
 
         return $this;

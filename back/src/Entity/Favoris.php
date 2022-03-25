@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Favoris
  *
- * @ORM\Table(name="favoris", indexes={@ORM\Index(name="IDX_8933C432F68F41F7", columns={"user_favoris_id"}), @ORM\Index(name="IDX_8933C4324122538A", columns={"associations_id"})})
+ * @ORM\Table(name="favoris", indexes={@ORM\Index(name="IDX_8933C4324122538A", columns={"associations_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\FavorisRepository")
  */
 class Favoris
@@ -32,14 +34,15 @@ class Favoris
     private $associations;
 
     /**
-     * @var \Favoris
-     *
-     * @ORM\ManyToOne(targetEntity="Favoris")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_favoris_id", referencedColumnName="id")
-     * })
+     * @ORM\Column(type="boolean")
      */
-    private $userFavoris;
+    private $state;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="UserFav")
+     */
+    private $favorisUser;
+
 
     public function getId(): ?int
     {
@@ -58,14 +61,26 @@ class Favoris
         return $this;
     }
 
-    public function getUserFavoris(): ?self
+    public function getState(): ?bool
     {
-        return $this->userFavoris;
+        return $this->state;
     }
 
-    public function setUserFavoris(?self $userFavoris): self
+    public function setState(bool $state): self
     {
-        $this->userFavoris = $userFavoris;
+        $this->state = $state;
+
+        return $this;
+    }
+
+    public function getFavUser(): ?User
+    {
+        return $this->favorisUser;
+    }
+
+    public function setFavUser(?User $favUser): self
+    {
+        $this->favorisUser = $favUser;
 
         return $this;
     }
