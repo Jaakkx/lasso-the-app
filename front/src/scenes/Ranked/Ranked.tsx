@@ -24,22 +24,31 @@ const Ranked = () => {
     setTheRank(ranking);
   };
 
-  return (
-    <div className="main">
-      <div className="flux_ranked_card">
-        <h1 className="title_ranked_page">Mon classement</h1>
-        {theRank?.map((rank) => (
-          <RankedCard
-            key={rank.id}
-            TitleCard={rank.association}
-            ContentCard={rank.description}
-            Rank={i++}
-            IdAsso={rank.associationId}
-          />
-        ))}
+  if(theRank === []){
+    return (
+      <div>
+        
       </div>
-    </div>
-  );
+    )
+  }else{
+    return (
+      <div className="main">
+        <div className="flux_ranked_card">
+          <h1 className="title_ranked_page">Mon classement</h1>
+          {theRank?.map((rank) => (
+            <RankedCard
+              key={rank.id}
+              TitleCard={rank.association}
+              ContentCard={rank.description}
+              Rank={i++}
+              IdAsso={rank.associationId}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
 };
 
 export default Ranked;
