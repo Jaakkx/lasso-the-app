@@ -9,7 +9,8 @@ const SingleAsso = (props: any) => {
   const [theAsso, setTheAsso] = useState<Asso>();
 
   useEffect(() => {
-    document.getElementsByClassName("background-changer")[0].id = "appSingleAsso";
+    document.getElementsByClassName("background-changer")[0].id =
+      "appSingleAsso";
     theSingleAsso();
   }, []);
 
