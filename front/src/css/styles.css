@@ -46,7 +46,8 @@ body {
 .background-changer#appRank,
 .background-changer#appAllAsso,
 .background-changer#appSocial,
-.background-changer#appProfile {
+.background-changer#appProfile,
+.home-login {
     background-size    : cover;
     background-repeat  : no-repeat;
     background-position: bottom;
@@ -70,6 +71,10 @@ body {
 
 .background-changer#appProfile{
     background-image   : url("../assets/images/lasso-profile.png");
+}
+
+.home-login{
+    background-image   : url("../assets/images/lasso-inscription.png");
 }
 
 .content {

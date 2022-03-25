@@ -9,10 +9,10 @@ body {
     align-items: center;
 }
 
-form {
+.signin form {
     margin-left   : 19px;
     margin-right  : 19px;
-    margin-top    : 51px;
+    margin-top    : 10vh;
     display       : flex;
     flex-wrap     : wrap;
     flex-direction: column;
@@ -56,9 +56,9 @@ input[type="submit"] {
     font-family     : "GothamBold";
 }
 
-.second-button {
+.signin .second-button {
     background     : none;
-    color          : black;
+    color          : white;
     font-size      : 16px;
     width          : 350px;
     text-align     : center;
@@ -69,7 +69,8 @@ p:first-child {
     font-family: "GothamBold";
 }
 
-.center {
+.signin .center {
     margin-left : auto;
     margin-right: auto;
+    color: white;
 }

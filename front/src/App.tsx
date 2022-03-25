@@ -18,7 +18,7 @@ function App() {
 
   if (!sessionStorage.getItem('Id')) {
     return (
-      <div className="App">
+      <div className="App home-login">
         <Routes>
           <Route path="/" element={<Login setToken={setToken} />} />
           <Route path="/inscription" element={<Signin setToken={setToken} />} />
