@@ -27,7 +27,7 @@ p {
     font-family  : "GothamBook";
 }
 
-input {
+.login input {
     padding-top   : 17px;
     padding-bottom: 18px;
     padding-left  : 18px;
@@ -37,7 +37,10 @@ input {
     font-size     : 16px;
     margin-left   : auto;
     margin-right  : auto;
+    font-family: "GothamBook";
 }
+
+
 
 input:focus,
 textarea:focus,
@@ -53,18 +56,6 @@ select:focus {
     font-weight  : normal;
 }
 
-button {
-    padding         : 18px;
-    width           : 350px;
-    font-size       : 18px;
-    border-radius   : 15px;
-    border          : none;
-    color           : white;
-    background-color: #6D1A00;
-    font-family     : "GothamBook";
-
-}
-
 .Login {
     margin-top: 20px;
 }
@@ -76,6 +67,7 @@ button {
     width          : 350px;
     text-align     : center;
     text-decoration: none;
+    font-family: "GothamBook";
 }
 
 p:first-child {

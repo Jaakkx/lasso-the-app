@@ -13,14 +13,14 @@ import Signin from "./scenes/Signin/Signin";
 import SingleAsso from "./scenes/SingleAsso/SingleAsso";
 
 function App() {
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(false);
 
-  if (!token) {
+  if (!sessionStorage.getItem('Id')) {
     return (
       <div className="App">
         <Routes>
-          <Route path="/" element={<Login setToken={setToken}/>}/>
-          <Route path='/inscription' element={<Signin/>}/>
+          <Route path="/" element={<Login setToken={setToken} />} />
+          <Route path="/inscription" element={<Signin setToken={setToken} />} />
         </Routes>
       </div>
     );
@@ -37,7 +37,7 @@ function App() {
             <Route path="/associations" element={<AllAsso />} />
             <Route path="/social" element={<SocialPage />} />
             <Route path="/asso">
-              <Route path=":assoId"  element={<SingleAsso />}/>
+              <Route path=":assoId" element={<SingleAsso />} />
             </Route>
           </Routes>
         </div>

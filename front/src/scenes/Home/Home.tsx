@@ -50,9 +50,20 @@ const Home = () => {
   }, []);
 
   const handleLaunch = async () => {
-      const register =  await getQuestion();   
-      setQuestions(register);         
-  }
+    const register = await getQuestion();
+    let randomQuestion: Question[];
+    let currentIndex = register.length,
+      randomIndex;
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [register[currentIndex], register[randomIndex]] = [
+        register[randomIndex],
+        register[currentIndex],
+      ];
+    }
+    setQuestions(register);
+  };
 
   const onSwipe = (direction: any) => {
     console.log("You swiped: " + direction);
@@ -68,12 +79,12 @@ const Home = () => {
         <div className="card-container">
           <div className="tinder-card-duplicate">
             {questions?.map((question) => (
-                <TinderCard
+              <TinderCard
                 className="tinder-card"
                 key={question.id}
                 onSwipe={(dir) => swiped(dir, question.id)}
                 onCardLeftScreen={() => outOfFrame(question.id)}
-                >
+              >
                 <CardSwipe questionContent={question.libelle} />
               </TinderCard>
             ))}

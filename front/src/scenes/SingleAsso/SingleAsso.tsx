@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TitreLogin from "../../components/TitreLogin.tsx/TitreLogin";
 import "./SingleAsso.css";
-import { fakeAuthProvider } from "../../components/auth";
-import image from "../../assets/images/Asso/resto_du_coeur.png";
 import { useParams } from "react-router-dom";
 import { getSingleAsso } from "../../api";
 import { Asso } from "../../decl/Asso.decl";

@@ -1,5 +1,4 @@
 import React from "react";
-import { fakeAuthProvider } from "../../components/auth";
 import "./TitreLogin.css";
 
 const TitreLogin = (props:any) => {

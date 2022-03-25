@@ -1,18 +1,25 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { registeringUser } from "../../api";
 import TitreLogin from "../../components/TitreLogin.tsx/TitreLogin";
 import './Signin.css'
 
-const Signin = () => {
+const Signin = (props:any) => {
   let [lastName, setLastName] = useState("");
   let [userName, setUserName] = useState("");
   let [password, setPassword] = useState("");
   let [email, setEmail] = useState("");
+  let navigate = useNavigate();
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try{
+      sessionStorage.clear();
       const register = await registeringUser({email, userName, lastName, password});
+      sessionStorage.setItem("Id",register.id);
+      navigate('/');
+      props.setToken(true);
     }catch(error){
         alert(error);
     }
@@ -20,7 +27,7 @@ const Signin = () => {
   
 
   return (
-    <div>
+    <div className="signin">
         <TitreLogin/>
       <form onSubmit={handleSubmit}>
         <label>
@@ -60,8 +67,13 @@ const Signin = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <input type={"submit"} value={"Envoyer"} />
+        <input type={"submit"} value={"S'inscrire"} />
       </form>
+      <p className="center">Ou</p>
+      <Link to={"/"} className="second-button">
+        Connectez-vous
+      </Link>
+
     </div>
   );
 };
