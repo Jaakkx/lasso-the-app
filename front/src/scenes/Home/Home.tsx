@@ -70,7 +70,7 @@ const Home = () => {
         </div>
       </div>
       <div className="button-swipe-parent">
-        <ButtonSwipe side='left' onSwipe={swiped}/>
+        <ButtonSwipe side='left'/>
         <ButtonSwipe side='right'/>
       </div>
     </div>

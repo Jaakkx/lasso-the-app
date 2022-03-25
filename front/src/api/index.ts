@@ -63,3 +63,14 @@ export const getSingleAsso = async(id:string):Promise<Asso> => {
         throw new Error("Problème de récupération des associations");
     }
 }
+
+export const getUser = async(id:string):Promise<registerUser> => {
+    try{
+        const res = await axios.get(
+            `${process.env.REACT_APP_BASE_URL}/user/${id}`
+        )
+        return res.data;
+    }catch(error) {
+        throw new Error("Problème lors de l récupération du profile");
+    }
+}

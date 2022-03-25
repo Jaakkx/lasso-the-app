@@ -9,13 +9,13 @@ const SingleAsso = (props: any) => {
   const [theAsso, setTheAsso] = useState<Asso>();
 
   useEffect(() => {
+    document.getElementsByClassName("background-changer")[0].id = "appSingleAsso";
     theSingleAsso();
   }, []);
 
   const theSingleAsso = async () => {
     const res = await getSingleAsso(assoId!);
     setTheAsso(res);
-    console.log(theAsso?.webSite);
   };
 
   return (

@@ -10,7 +10,7 @@ const AllAsso = () => {
   const [allAsso, setAllAsso] = useState<Asso[]>();
 
   useEffect(() => {
-    document.getElementsByClassName("App")[0].id = "appAllAsso";
+    document.getElementsByClassName("background-changer")[0].id = "appAllAsso";
     document.getElementsByClassName("active")[0]?.classList.remove("active");
     document.getElementById("item-associations")?.classList.add("active");
     stockAllAsso();

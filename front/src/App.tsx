@@ -11,6 +11,7 @@ import AllAsso from "./scenes/AllAsso/AllAsso";
 import SocialPage from "./scenes/SocialPage/SocialPage";
 import Signin from "./scenes/Signin/Signin";
 import SingleAsso from "./scenes/SingleAsso/SingleAsso";
+import UserProfile from "./scenes/UserProfile/UserProfile";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -38,6 +39,9 @@ function App() {
             <Route path="/social" element={<SocialPage />} />
             <Route path="/asso">
               <Route path=":assoId" element={<SingleAsso />} />
+            </Route>
+            <Route path="/profile:userId" element={<UserProfile />}>
+              <Route path=":userId" element={<UserProfile />} />
             </Route>
           </Routes>
         </div>
