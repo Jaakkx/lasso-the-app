@@ -118,35 +118,13 @@ class AssociationController extends AbstractController
                                     UserRepository $userRepository, $userId, SerializerInterface $serializer): JsonResponse
     {
         $user = $userRepository->findOneById($userId);
-
         $user->getUserFav();
 
-        //dd($user->getUserFav());
+        // affichage des favoris
 
-        $tab_final = [];
-        if($user->getUserFav()->isEmpty()){
-            dd("test");
-            foreach ($user->getFavoris() as $favoris) {
-
-                $tab = [];
-                $tab['id'] = $user->getFavoris()->getId();
-                $tab['state'] = $user->getFavoris()->getState();
-                $tab['association'] = $user->getFavoris()->getAssociations()->getName();
-                array_push($tab, $tab_final);
-
-            }
-            dd($tab);
-            $results = $serializer->serialize(
-                $tab_final,
-                'json'
-            );
-            return new JsonResponse($results, 200, [], true);
-        }
-        else{
-            return $this->json([
-                'message' => 'pas de favoris',
-            ]);
-        }
+        return $this->json([
+            'message' => 'à faire',
+        ]);
 
     }
 
@@ -164,93 +142,22 @@ class AssociationController extends AbstractController
                                     EntityManagerInterface $entityManager, $associationId, AssociationRepository $associationRepository): JsonResponse
     {
 
-        //dd("oui");
         $user = $userRepository->findOneById($userId);
         $assos = $associationRepository->findOneById($associationId);
+        // ajouter un favoris
+        // vérifier que getUserFave est vide ou pas
+        // s' il est vide directement ajouter un nouveau Favoris avec statut add
+        // sinon vérifier son statut
+        // si statut = 1
+        // renvoie message => déja dans favoris
+        // si statut 0
+        // changer le statut en 1 => ajout au favoris
 
-        if($user->getFavoris() == NULL){
-            dd("test4");
-            $favoris = new Favoris();
-            $favoris->setState(1);
+        // renvoie le favoris en format JSON pour voir si il est bien existant et son état
 
-            $favoris->setAssociations($assos);
-            $favoris->addUser($user);
-            $user->setFavoris($favoris);
-
-            $entityManager->persist($user);
-            $entityManager->persist($favoris);
-            $entityManager->flush();
-
-            $returnArray = [
-                'id' =>$favoris->getId(),
-                'state'=>$favoris->getState(),
-                'association'=>$favoris->getAssociations()->getName(),
-            ];
-
-            $results = $serializer->serialize(
-                $returnArray,
-                'json'
-            );
-
-            return new JsonResponse($results, 200, [], true);
-        }
-        else{
-            //dd('test');
-            //dd($user->getFavoris()->getAssociations()->getName());
-            //foreach ($user->getFavoris()->getAssociations() as $fav){
-                if($user->getFavoris()->getAssociations()->getName() == $assos->getName()){
-                    if($user->getFavoris()->getState() == true){
-                        dd("test1");
-                        return $this->json([
-                            'message' => 'association déjà dans vos favoris !',
-                        ]);
-                    }else{
-                        dd("test2");
-                        $user->getFavoris()->getAssociations()->setState(1);
-                        $entityManager->persist($user->getFavoris());
-                        $entityManager->flush();
-
-                        $returnArray = [
-                            'id' =>$user->getFavoris()->getId(),
-                            'state'=>$user->getFavoris()->getState(),
-                            'association'=>$user->getFavoris()->getAssociations()->getName(),
-                        ];
-
-                        $results = $serializer->serialize(
-                            $returnArray,
-                            'json'
-                        );
-                    }
-                }
-                else{
-                    //dd("test3");
-                    $favoris = new Favoris();
-                    $favoris->setState(1);
-
-                    $favoris->setAssociations($assos);
-                    $favoris->addUser($user);
-                    $user->setFavoris($favoris);
-
-                    $entityManager->persist($user);
-                    $entityManager->persist($favoris);
-                    $entityManager->flush();
-
-                    $returnArray = [
-                        'id' =>$favoris->getId(),
-                        'state'=>$favoris->getState(),
-                        'association'=>$favoris->getAssociations()->getName(),
-                    ];
-
-                    $results = $serializer->serialize(
-                        $returnArray,
-                        'json'
-                    );
-
-                }
-            }
-        //}
-        dd("rien");
-        //return new JsonResponse($results, 200, [], true);
+        return $this->json([
+            'message' => 'à faire',
+        ]);
     }
 
     /**
@@ -266,5 +173,20 @@ class AssociationController extends AbstractController
     {
         $user = $userRepository->findOneById($userId);
         $user->getFavoris();
+        // supprimer un favoris
+
+        // vérifier que getUserFave est vide ou pas
+        // s' il est vide directement ajouter un nouveau Favoris avec statut 0
+        // sinon vérifier son statut
+        // si statut = 0
+        // renvoie message => déja pas favoris
+        // si statut 1
+        // changer le statut en 0 => enleve au favoris
+
+        // renvoie le favoris en format JSON pour voir si il est bien existant et son état
+
+        return $this->json([
+            'message' => 'à faire',
+        ]);
     }
 }

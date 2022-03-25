@@ -120,6 +120,9 @@ class QuestionController extends AbstractController
                 $associationUser = new AssociationUser();
                 $associationUser->setAssociationName($assos->getName());
                 $associationUser->setScoreUpdateUser($assos->getScore());
+                $associationUser->setAssociationId($assos->getId());
+                $associationUser->setAssociationDescription($assos->getDescription());
+
                 $associationUser->addUser($user);
 
                 $user->addAssociationUser($associationUser);
@@ -281,9 +284,10 @@ class QuestionController extends AbstractController
      * @param SerializerInterface $serializer
      * @param $userId
      * @param UserRepository $userRepository
+     * @param AssociationRepository $associationRepository
      * @return JsonResponse
      */
-    public function getRanking(SerializerInterface $serializer, $userId, UserRepository $userRepository){
+    public function getRanking(SerializerInterface $serializer, $userId, UserRepository $userRepository, AssociationRepository $associationRepository){
 
         // quand clique sur icone classement
 
@@ -291,9 +295,7 @@ class QuestionController extends AbstractController
         // récupération de la liste ou tableau des 3 assos avec le score le plus élevé
         // affichage du classement (tableau des 3 assos)
         $user = $userRepository->findOneById($userId);
-        // $associationUser = $associationRepository->findAll();
 
-        $associationByUser = $user->getAssociationUsers();
         if($user->getAssociationUsers()->isEmpty()){
             return $this->json([
                 'message' => 'pas de classement disponible car vous navez pas encore répondu à une question',
@@ -302,15 +304,22 @@ class QuestionController extends AbstractController
         else{
             $tabScore = [];
             $tab = [];
+            $association = $associationRepository->findAll();
+
+
             foreach ($user->getAssociationUsers() as $assosUser) {
                 $tab['score'] = $assosUser->getScoreUpdateUser();
+                $tab['associationId'] = $assosUser->getAssociationId();
+                $tab['association'] = $assosUser->getAssociationName();
+                $tab['description'] = $assosUser->getAssociationDescription();
                 array_push($tabScore, $tab);
-                sort($tabScore);
             }
+
         }
 
-        $tab = array_chunk($tabScore, 3);
-        $tab_final = $tab[6];
+        sort($tabScore);
+        $tab2 = array_chunk($tabScore, 3);
+        $tab_final = $tab2[6];
         $results = $serializer->serialize(
             $tab_final,
             'json'
