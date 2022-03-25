@@ -19,6 +19,8 @@ const Ranked = () => {
   const getTheRank = async () => {
     const userId: number = parseInt(sessionStorage.getItem("Id") || "", 10);
     const ranking = await getRank(userId);
+    console.log(ranking);
+
     setTheRank(ranking);
   };
 
@@ -28,10 +30,11 @@ const Ranked = () => {
         <h1 className="title_ranked_page">Mon classement</h1>
         {theRank?.map((rank) => (
           <RankedCard
+            key={rank.id}
             TitleCard={rank.association}
-            ContentCard="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu lobortis tortor sem lacus, dictumst consectetur urna. Consequat, eleifend in id egestas at ultricies vitae sit.Lorem ipsum dolor sit amet, consectetur.
-                "
+            ContentCard={rank.description}
             Rank={i++}
+            IdAsso={rank.associationId}
           />
         ))}
       </div>

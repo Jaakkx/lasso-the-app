@@ -2,7 +2,7 @@
 **Header Settings
 */
 
-.container{
+.container-rank{
     height: 160px;
     margin: 0 0 16px 0;
     padding: 16px;
@@ -10,6 +10,11 @@
     border-radius: 16px;
     
 }
+
+.container-rank .content_card{
+    margin:8px 0 10px 0
+}
+
 .title_ranked_card{
     display: flex;
     flex-direction: row;
@@ -26,5 +31,9 @@
     font-size: 3rem;
     margin: 0 8px 0 0;
 
+}
+
+.container-rank .link-single-asso{
+    margin-top: 20px;
 }
 
